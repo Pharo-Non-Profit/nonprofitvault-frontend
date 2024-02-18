@@ -24,25 +24,34 @@ function SingleFile({ currentUser, fileClassification, listData, onDownloadDocum
     return (<>
         <hr />
         <h1 class="title is-3">
-            {isMatch
-                ?
-                <span className="has-text-success">
-                    <FontAwesomeIcon className="mdi" icon={faCheckCircle} />&nbsp;
-                </span>
-                :
-                <span className="has-text-danger">
-                    <FontAwesomeIcon className="mdi" icon={faTimesCircle} />&nbsp;
-                </span>
-            }
-            <u>{fileClassification.label}</u>
+            <div class="columns">
+                <div class="column">
+                    {isMatch
+                        ?
+                        <span className="has-text-success">
+                            <FontAwesomeIcon className="mdi" icon={faCheckCircle} />&nbsp;
+                        </span>
+                        :
+                        <span className="has-text-danger">
+                            <FontAwesomeIcon className="mdi" icon={faTimesCircle} />&nbsp;
+                        </span>
+                    }
+                    <u>{fileClassification.label}</u>
+                </div>
+                <div class="column has-text-right is-3">
+                    {isMatch === false && <button onClick={(a,b)=>onUploadDocumentClick(fileClassification.id, fileClassification.label)} class="button is-small is-success is-fullwidth-mobile" type="button">
+                        <FontAwesomeIcon className="mdi" icon={faCloudUpload} />&nbsp;Upload
+                    </button>}
+                </div>
+            </div>
         </h1>
         <span className="has-text-grey">{fileClassification.short}</span>
         <br />
         <br />
         {isMatch
-            ?
+            &&
             <>
-                <article class="message is-success">
+                <article class="message">
                     <div class="message-body">
                         <div class="columns">
                             <div class="column">
@@ -61,23 +70,7 @@ function SingleFile({ currentUser, fileClassification, listData, onDownloadDocum
                     </div>
                 </article>
             </>
-            :
-            <>
-                <article class="message">
-                    <div class="message-body">
-                        <div class="columns">
-                            <div class="column">
-                                <i>No file uploaded</i>
-                            </div>
-                            <div class="column has-text-right">
-                                <button onClick={(a,b)=>onUploadDocumentClick(fileClassification.id, fileClassification.label)} class="button is-small is-success" type="button">
-                                    <FontAwesomeIcon className="mdi" icon={faCloudUpload} />&nbsp;Upload
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </>
+
         }
         <br />
     </>);
