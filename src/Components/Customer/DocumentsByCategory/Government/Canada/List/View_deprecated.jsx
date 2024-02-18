@@ -1,3 +1,8 @@
+/*
+    THIS FILE IS DEPRECATED BECAUSE WE DON'T WANT TO HAVE THE SERVER DOWNLOAD
+    AND PROVIDE THE FILE FROM S3 AND THEN FROM THE SERVER DOWNLOAD IT TO THE
+    USER.
+ */
 import React, { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import Scroll from 'react-scroll';
@@ -5,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudDownload, faCloudUpload, faChevronRight, faCloud, faFilterCircleXmark,faArrowLeft, faUniversity, faTachometer, faEye, faPencil, faTrashCan, faPlus, faGauge, faArrowRight, faTable, faArrowUpRightFromSquare, faRefresh, faFilter, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useRecoilState } from 'recoil';
 
-import { getObjectFileListAPI, getObjectFilePresignedURLAPI } from "../../../../../../API/ObjectFile";
+import { getObjectFileListAPI, getObjectFileContentAPI } from "../../../../../../API/ObjectFile";
 import {
     topAlertMessageState,
     topAlertStatusState,
@@ -177,42 +182,46 @@ function CustomerDocumentsByGovernmentCategoryListForCanada() {
     setErrors({});
     setFetching(true);
 
-    getObjectFilePresignedURLAPI(
+    getObjectFileContentAPI(
         objectFileID,
-        (responseData) => { // ON SUCCESS
-            console.log("getObjectFilePresignedURLAPI: Success: responseData:",responseData);
+        (data) => { // ON SUCCESS
+           // Reset any previous errors.
+           setErrors({});
 
-            // Reset any previous errors.
-            setErrors({});
+           // Convert data to Blob object
+           const blob = new Blob([data]);
 
-            // Create an anchor element
-            const link = document.createElement('a');
+           // Create an anchor element
+           const link = document.createElement('a');
 
-            // Set the href attribute to the presigned URL
-            link.href = responseData.presignedUrl;
+           // Set the href attribute to the blob URL
+           link.href = URL.createObjectURL(blob);
 
-            // Set the download attribute to specify the filename
-            link.download = objectFileFilename; // Replace 'filename.ext' with the desired filename
+           // Set the download attribute to specify the filename
+           link.download = objectFileFilename; // Replace 'filename.ext' with the desired filename
 
-            // Hide the anchor element
-            link.style.display = 'none';
+           // Hide the anchor element
+           link.style.display = 'none';
 
-            // Append the anchor element to the document body
-            document.body.appendChild(link);
+           // Append the anchor element to the document body
+           document.body.appendChild(link);
 
-            // Trigger a click event on the anchor element
-            link.click();
+           // Trigger a click event on the anchor element
+           link.click();
 
-            // Remove the anchor element from the document body
-            document.body.removeChild(link);
+           // Remove the anchor element from the document body
+           document.body.removeChild(link);
+
+       // Reset the fetching state
+       setFetching(false);
         },
         (apiErr) => { // ON ERROR
             // Handle API errors
             setErrors(apiErr);
+            setFetching(false);
         },
         () => { // ON DONE
-            // Turn off page refresh.
-            setFetching(false);
+            // Do nothing...
         },
         onUnauthorized
     );
