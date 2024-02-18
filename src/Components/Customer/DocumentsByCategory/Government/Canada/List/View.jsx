@@ -351,12 +351,20 @@ function CustomerDocumentsByGovernmentCategoryListForCanada() {
                                             <hr />
                                             <div class="columns">
                                                 <div class="column">
-                                                    <h1 class="title is-5">
+                                                    <h1 class="title is-4">
                                                         {fileClassification.label}
                                                     </h1>
                                                     <span className="has-text-grey">{fileClassification.short}</span>
                                                     <br />
                                                     <br />
+                                                    {isMatch && <>
+                                                        <span className="has-text-grey"><i>Filename:&nbsp;{objectFile.filename}</i></span>
+                                                        <br />
+                                                        <br />
+                                                        <span className="has-text-grey"><i>Created:&nbsp;{objectFile.createdAt}</i></span>
+                                                        <br />
+                                                        <br />
+                                                    </>}
                                                 </div>
                                                 <div class="column is-one-quarter">
                                                     <div class="buttons is-right">
@@ -400,17 +408,23 @@ function CustomerDocumentsByGovernmentCategoryListForCanada() {
                                                 {isMatch
                                                     ?
                                                     <>
-                                                        <button onClick={(e)=>onDownloadDocumentClick(objectFile.id)} class="button is-fullwidth-mobile is-primary" type="button">
+                                                        <span className="has-text-grey"><i>Filename:&nbsp;{objectFile.filename}</i></span>
+                                                        <br />
+                                                        <br />
+                                                        <span className="has-text-grey"><i>Created:&nbsp;{objectFile.createdAt}</i></span>
+                                                        <br />
+                                                        <br />
+                                                        <button onClick={(e)=>onDownloadDocumentClick(objectFile.id)} class="button is-fullwidth-mobile is-primary is-small" type="button">
                                                             <FontAwesomeIcon className="mdi" icon={faCloudDownload} />&nbsp;Download
                                                         </button>
                                                         <br />
-                                                        <button onClick={(a,b)=>onUploadDocumentClick(fileClassification.id, fileClassification.label)} class="button is-fullwidth-mobile is-danger" type="button">
+                                                        <button onClick={(a,b)=>onUploadDocumentClick(fileClassification.id, fileClassification.label)} class="button is-fullwidth-mobile is-danger is-small" type="button">
                                                             <FontAwesomeIcon className="mdi" icon={faTrashCan} />&nbsp;Delete
                                                         </button>
                                                     </>
                                                     :
                                                     <>
-                                                        <button onClick={(a,b)=>onUploadDocumentClick(fileClassification.id, fileClassification.label)} class="button is-fullwidth-mobile is-success" type="button">
+                                                        <button onClick={(a,b)=>onUploadDocumentClick(fileClassification.id, fileClassification.label)} class="button is-fullwidth-mobile is-success is-small" type="button">
                                                             <FontAwesomeIcon className="mdi" icon={faCloudUpload} />&nbsp;Upload
                                                         </button>
                                                     </>
