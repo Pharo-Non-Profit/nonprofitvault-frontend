@@ -73,23 +73,33 @@ function Login() {
             // Store in persistance storage in the browser.
             setCurrentUser(response.user);
 
-            switch (response.user.role) {
-                case EXECUTIVE_ROLE_ID:
-                    setForceURL("/root/tenants");
-                    break;
-                case MANAGEMENT_ROLE_ID:
-                    setForceURL("/admin/dashboard");
-                    break;
-                case FRONTLINE_ROLE_ID:
-                    setForceURL("/admin/dashboard");
-                    break;
-                case CUSTOMER_ROLE_ID:
-                    setForceURL("/dashboard");
-                    break;
-                default:
-                    setForceURL("/501");
-                    break;
+            if (response.user.otpEnabled === false) {
+                switch (response.user.role) {
+                    case EXECUTIVE_ROLE_ID:
+                        setForceURL("/root/tenants");
+                        break;
+                    case MANAGEMENT_ROLE_ID:
+                        setForceURL("/admin/dashboard");
+                        break;
+                    case FRONTLINE_ROLE_ID:
+                        setForceURL("/admin/dashboard");
+                        break;
+                    case CUSTOMER_ROLE_ID:
+                        setForceURL("/dashboard");
+                        break;
+                    default:
+                        setForceURL("/501");
+                        break;
+                }
+            } else {
+                if (response.user.otpVerified === false) {
+                    setForceURL("/login/2fa/step-1");
+                } else {
+                    alert("TODO!!!");
+                }
             }
+
+
         }
     }
 

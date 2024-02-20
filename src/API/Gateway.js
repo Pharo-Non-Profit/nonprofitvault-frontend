@@ -9,7 +9,10 @@ import {
     NONPROFITVAULT_FORGOT_PASSWORD_API_ENDPOINT,
     NONPROFITVAULT_PASSWORD_RESET_API_ENDPOINT,
     NONPROFITVAULT_EXECUTIVE_VISITS_TENANT_API_ENDPOINT,
-    NONPROFITVAULT_DASHBOARD_API_ENDPOINT
+    NONPROFITVAULT_DASHBOARD_API_ENDPOINT,
+    NONPROFITVAULT_2FA_GENERATE_OTP_API_ENDPOINT,
+    NONPROFITVAULT_2FA_GENERATE_OTP_AND_QR_CODE_API_ENDPOINT,
+    NONPROFITVAULT_2FA_VERIFY_OTP_API_ENDPOINT
 } from "../Constants/API";
 import { getAPIBaseURL } from '../Helpers/urlUtility';
 import {
@@ -67,7 +70,6 @@ export function postLoginAPI(data, onSuccessCallback, onErrorCallback, onDoneCal
         onErrorCallback(errors);
     }).then(onDoneCallback);
 }
-
 
 export function postRegisterAPI(data, onSuccessCallback, onErrorCallback, onDoneCallback) {
     const customAxios = axios.create({
@@ -262,6 +264,81 @@ export function getDashboardAPI(onSuccessCallback, onErrorCallback, onDoneCallba
 
         // Snake-case from API to camel-case for React.
         const data = camelizeKeys(responseData);
+
+        // Return the callback data.
+        onSuccessCallback(data);
+    }).catch( (exception) => {
+        let errors = camelizeKeys(exception);
+        onErrorCallback(errors);
+    }).then(onDoneCallback);
+}
+
+export function postGenerateOTP(onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+    const axios = getCustomAxios(onUnauthorizedCallback);
+
+    let aURL = NONPROFITVAULT_2FA_GENERATE_OTP_API_ENDPOINT;
+
+    axios.post(aURL).then((successResponse) => {
+        const responseData = successResponse.data;
+
+        // Snake-case from API to camel-case for React.
+        const data = {
+            base32: responseData.base32,
+            optAuthURL: responseData.otpauth_url,
+        };
+
+        // console.log("getTagListAPI | post-fix | results:", data);
+
+        // Return the callback data.
+        onSuccessCallback(data);
+    }).catch( (exception) => {
+        let errors = camelizeKeys(exception);
+        onErrorCallback(errors);
+    }).then(onDoneCallback);
+}
+
+export function postGenerateOTPAndQRCodeImage(onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+    const axios = getCustomAxios(onUnauthorizedCallback);
+
+    let aURL = NONPROFITVAULT_2FA_GENERATE_OTP_AND_QR_CODE_API_ENDPOINT;
+
+    axios.post(aURL, { responseType: 'blob',}).then((successResponse) => {
+        const binaryData = successResponse.data;
+
+        // Create a Blob from the binary data
+        const blob = new Blob([binaryData], { type: 'image/png' });
+
+        // Create a Blob URL from the Blob object
+        const blobUrl = URL.createObjectURL(blob);
+
+        console.log("blobUrl", blobUrl);
+
+        // Call the success callback with the Blob URL
+        onSuccessCallback(blobUrl);
+    }).catch( (exception) => {
+        let errors = camelizeKeys(exception);
+        onErrorCallback(errors);
+    }).then(onDoneCallback);
+}
+
+export function postVertifyOTP(data, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+    const axios = getCustomAxios(onUnauthorizedCallback);
+
+    let aURL = NONPROFITVAULT_2FA_VERIFY_OTP_API_ENDPOINT;
+    const payload = {
+        otp_token: data
+    };
+
+    axios.post(aURL, payload).then((successResponse) => {
+        const responseData = successResponse.data;
+
+        // Snake-case from API to camel-case for React.
+        const data = {
+            base32: responseData.base32,
+            optAuthURL: responseData.otpauth_url,
+        };
+
+        // console.log("getTagListAPI | post-fix | results:", data);
 
         // Return the callback data.
         onSuccessCallback(data);

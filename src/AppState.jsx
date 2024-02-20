@@ -55,6 +55,13 @@ export const currentUserState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
+export const currentOTPResponseState = atom({
+  key: 'currentOTPResponse',
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});
+
+
 // ------------------------------------------------ Add ------------------------------------------------ //
 
 export const ADD_USER_STATE_DEFAULT = {
