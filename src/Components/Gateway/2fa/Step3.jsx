@@ -35,8 +35,33 @@ function TwoFactorAuthenticationWizardStep3() {
 
     function onVerifyOPTSuccess(response){
         console.log("onVerifyOPTSuccess: Starting...");
-        console.log("response: ", response);
-        // setOtpResponse(response);
+        if (response !== undefined && response !== null && response !== "") {
+            console.log("response: ", response);
+            if (response.user !== undefined && response.user !== null && response.user !== "") {
+                console.log("response.user: ", response.user);
+
+                // Save our updated user account.
+                setCurrentUser(response.user);
+
+                switch (response.user.role) {
+                    case EXECUTIVE_ROLE_ID:
+                        setForceURL("/root/tenants");
+                        break;
+                    case MANAGEMENT_ROLE_ID:
+                        setForceURL("/admin/dashboard");
+                        break;
+                    case FRONTLINE_ROLE_ID:
+                        setForceURL("/admin/dashboard");
+                        break;
+                    case CUSTOMER_ROLE_ID:
+                        setForceURL("/dashboard");
+                        break;
+                    default:
+                        setForceURL("/501");
+                        break;
+                }
+            }
+        }
 
     }
 
@@ -60,8 +85,14 @@ function TwoFactorAuthenticationWizardStep3() {
     ////
 
     function onButtonClick(e) {
+        // Remove whitespace characters from verificationToken
+        const cleanedVerificationToken = verificationToken.replace(/\s/g, '');
+
+        const payload= {
+            verification_token: cleanedVerificationToken,
+        }
         postVertifyOTP(
-            verificationToken,
+            payload,
             onVerifyOPTSuccess,
             onVerifyOPTError,
             onVerifyOPTDone

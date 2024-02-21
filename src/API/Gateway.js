@@ -321,27 +321,12 @@ export function postGenerateOTPAndQRCodeImage(onSuccessCallback, onErrorCallback
     }).then(onDoneCallback);
 }
 
-export function postVertifyOTP(data, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+export function postVertifyOTP(payload, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
     const axios = getCustomAxios(onUnauthorizedCallback);
-
     let aURL = NONPROFITVAULT_2FA_VERIFY_OTP_API_ENDPOINT;
-    const payload = {
-        otp_token: data
-    };
-
     axios.post(aURL, payload).then((successResponse) => {
-        const responseData = successResponse.data;
-
-        // Snake-case from API to camel-case for React.
-        const data = {
-            base32: responseData.base32,
-            optAuthURL: responseData.otpauth_url,
-        };
-
-        // console.log("getTagListAPI | post-fix | results:", data);
-
         // Return the callback data.
-        onSuccessCallback(data);
+        onSuccessCallback(successResponse.data);
     }).catch( (exception) => {
         let errors = camelizeKeys(exception);
         onErrorCallback(errors);
