@@ -169,6 +169,11 @@ export default props => {
                         </p>
                         <ul className="menu-list">
                             <li>
+                                <Link to="/account" className={`has-text-grey-light ${location.pathname.includes("account") && "is-active"}`}>
+                                    <FontAwesomeIcon className="fas" icon={faUser} />&nbsp;Profile
+                                </Link>
+                            </li>
+                            <li>
                                 <Link to="/admin/help" className={`has-text-grey-light ${location.pathname.includes("help") && "is-active"}`}>
                                     <FontAwesomeIcon className="fas" icon={faQuestionCircle} />&nbsp;Help
                                 </Link>

@@ -25,6 +25,9 @@ import NotImplementedError from "./Components/Misc/NotImplementedError";
 import ForgotPassword from "./Components/Gateway/ForgotPassword";
 import PasswordReset from "./Components/Gateway/PasswordReset";
 
+// Account
+import AccountDetail from "./Components/Account/Detail/View";
+
 // Root
 import RootDashboard from "./Components/Root/Dashboard";
 import RootTenantList from "./Components/Root/Tenant/List";
@@ -95,6 +98,8 @@ function AppRoute() {
                                     <Route exact path="/documents" element={<CustomerDocumentCategoryAllList/>}/>
 
                                     <Route exact path="/dashboard" element={<CustomerDashboard/>}/>
+
+                                    <Route exact path="/account" element={<AccountDetail/>}/>
 
                                     <Route exact path="/admin/user/:cid/downgrade" element={<AdminUserDowngradeOperation/>}/>
                                     <Route exact path="/admin/user/:cid/upgrade" element={<AdminUserUpgradeOperation/>}/>

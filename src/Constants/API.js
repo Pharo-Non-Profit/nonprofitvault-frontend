@@ -17,6 +17,14 @@ export const NONPROFITVAULT_2FA_GENERATE_OTP_API_ENDPOINT = HTTP_API_SERVER + "/
 export const NONPROFITVAULT_2FA_GENERATE_OTP_AND_QR_CODE_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/otp/generate-qr-code";
 export const NONPROFITVAULT_2FA_VERIFY_OTP_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/otp/verify";
 export const NONPROFITVAULT_2FA_VALIDATE_OTP_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/otp/validate";
+export const NONPROFITVAULT_2FA_DISABLED_OTP_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/otp/disable";
+
+/**
+ * Account
+ */
+export const NONPROFITVAULT_ACCOUNT_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/profile";
+export const NONPROFITVAULT_ACCOUNT_CHANGE_PASSWORD_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/account/change-password";
+export const NONPROFITVAULT_ACCOUNT_AVATAR_OPERATION_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/account/operation/avatar";
 
 /**
  * Tenants
