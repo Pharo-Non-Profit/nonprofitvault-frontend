@@ -79,9 +79,9 @@ function TwoFactorAuthenticationWizardStep1() {
 
                                             {/* Page */}
                                             <form>
-                                                <h1 className="title is-3 has-text-centered">Two-Factor Authentication (2FA)</h1>
+                                                <h1 className="title is-2 has-text-centered">Setup Two-Factor Authentication</h1>
                                                 <FormErrorBox errors={errors} />
-                                                <p class="has-text-grey">To ensure your account stays secure, you need to sign in using <i>two-factor Authentication (2FA)</i>.</p>
+                                                <p class="has-text-grey">To ensure your account stays secure, you need to sign in using <i>two-factor Authentication (2FA)</i>. The following wizard will help you get setup with 2FA.</p>
                                                 <br />
                                                 <p class="has-text-grey">To begin, please download any of the following applications for your mobile device.</p>
                                                 <p>&nbsp;</p>
@@ -89,17 +89,21 @@ function TwoFactorAuthenticationWizardStep1() {
                                                 <div className="card">
                                                     <div className="card-content">
                                                         <div className="media">
-
                                                           <div className="media-content">
-                                                            <p className="title is-4">Google Authenticator</p>
+                                                            <p className="title is-4"><u>Google Authenticator</u></p>
                                                           </div>
                                                         </div>
 
                                                         <div className="content">
                                                             <p>This 2FA app is created by <b>Google, Inc.</b></p>
-                                                            <b>Download for iOS:</b>
-                                                            <Link className="card-footer-item button is-primary is-small" to="https://apps.apple.com/ca/app/google-authenticator/id388497605" target="_blank" rel="noreferrer">
+                                                            <b>Download for iOS:</b>&nbsp;
+                                                            <Link className="" to="https://apps.apple.com/ca/app/google-authenticator/id388497605" target="_blank" rel="noreferrer">
                                                                Visit App Store&nbsp;<FontAwesomeIcon className="fas" icon={faArrowUpRightFromSquare} />
+                                                            </Link>
+                                                            <br />
+                                                            <b>Download for Android:</b>&nbsp;
+                                                            <Link className="" to="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&pli=1" target="_blank" rel="noreferrer">
+                                                               Visit Google Play&nbsp;<FontAwesomeIcon className="fas" icon={faArrowUpRightFromSquare} />
                                                             </Link>
                                                             <br />
                                                         </div>
@@ -119,14 +123,14 @@ function TwoFactorAuthenticationWizardStep1() {
                                                         <div className="media">
 
                                                           <div className="media-content">
-                                                            <p className="title is-4">Authenticator</p>
+                                                            <p className="title is-4"><u>Authenticator</u></p>
                                                           </div>
                                                         </div>
 
                                                         <div className="content">
                                                             <p>This 2FA app is created by <b>authenticator.cc</b></p>
-                                                            <b>Download for Chrome Browser:</b>
-                                                            <Link className="card-footer-item button is-primary is-small" to="https://chromewebstore.google.com/detail/authenticator/bhghoamapcdpbohphigoooaddinpkbai?pli=1" target="_blank" rel="noreferrer">
+                                                            <b>Download for Chrome:</b>&nbsp;
+                                                            <Link className="" to="https://chromewebstore.google.com/detail/authenticator/bhghoamapcdpbohphigoooaddinpkbai?pli=1" target="_blank" rel="noreferrer">
                                                                Visit Chrome web store&nbsp;<FontAwesomeIcon className="fas" icon={faArrowUpRightFromSquare} />
                                                             </Link>
                                                             <br />

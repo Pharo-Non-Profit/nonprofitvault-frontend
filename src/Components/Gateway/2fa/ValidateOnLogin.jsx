@@ -7,13 +7,13 @@ import { useRecoilState } from 'recoil';
 import QRCode from "qrcode.react";
 
 import FormErrorBox from "../../Reusable/FormErrorBox";
-import { postVertifyOTP } from "../../../API/Gateway";
+import { postValidateOTP } from "../../../API/Gateway";
 import { currentOTPResponseState, currentUserState } from "../../../AppState";
 import FormInputField from "../../Reusable/FormInputField";
 import { EXECUTIVE_ROLE_ID, MANAGEMENT_ROLE_ID, FRONTLINE_ROLE_ID, ASSOCIATE_ROLE_ID, CUSTOMER_ROLE_ID } from "../../../Constants/App";
 
 
-function TwoFactorAuthenticationWizardStep3() {
+function TwoFactorAuthenticationValidateOnLogin() {
     ////
     //// Global state.
     ////
@@ -27,7 +27,7 @@ function TwoFactorAuthenticationWizardStep3() {
 
     const [errors, setErrors] = useState({});
     const [forceURL, setForceURL] = useState("");
-    const [verificationToken, setVerificationToken] = useState("");
+    const [token, setToken] = useState("");
 
     ////
     //// API.
@@ -85,13 +85,13 @@ function TwoFactorAuthenticationWizardStep3() {
     ////
 
     function onButtonClick(e) {
-        // Remove whitespace characters from verificationToken
-        const cleanedVerificationToken = verificationToken.replace(/\s/g, '');
+        // Remove whitespace characters from token
+        const cleanedToken = token.replace(/\s/g, '');
 
         const payload= {
-            verification_token: cleanedVerificationToken,
+            token: cleanedToken,
         }
-        postVertifyOTP(
+        postValidateOTP(
             payload,
             onVerifyOPTSuccess,
             onVerifyOPTError,
@@ -127,32 +127,39 @@ function TwoFactorAuthenticationWizardStep3() {
             <div className="container column is-12">
                 <div className="section">
 
+
                     <section className="hero is-fullheight">
                         <div className="hero-body">
                             <div className="container">
                                 <div className="columns is-centered">
                                     <div className="column is-half-tablet">
                                         <div className="box is-rounded">
-                                            {/* Progress Wizard */}
-                                            <nav className="box has-background-success-light" >
-                                                <p className="subtitle is-5">Step 3 of 3</p>
-                                                <progress class="progress is-success" value="100" max="100">100%</progress>
+                                            {/* Start Logo */}
+                                            <nav className="level">
+                                                <div className="level-item has-text-centered">
+                                                    <figure className='image'>
+                                                        <Link to="/">
+                                                            <img src='/img/capsule-logo.png' style={{width:"256px"}} />
+                                                        </Link>
+                                                    </figure>
+                                                </div>
                                             </nav>
+                                            {/* End Logo */}
 
                                             {/* Page */}
                                             <form>
-                                                <h1 className="title is-2 has-text-centered">Setup Two-Factor Authentication</h1>
+                                                <h1 className="title is-3 has-text-centered">Two-Factor Authentication</h1>
                                                 <FormErrorBox errors={errors} />
-                                                <p class="has-text-grey">Open the two-step verification app on your mobile device to get your verification code.</p>
+                                                <p class="has-text-grey">Open the two-step verification app on your mobile device, get your token and input here to finish your login.</p>
                                                 <p>&nbsp;</p>
                                                 <FormInputField
-                                                    label="Enter your Verification Token"
-                                                    name="verificationToken"
+                                                    label="Enter your Token"
+                                                    name="token"
                                                     placeholder="See your authenticator app"
-                                                    value={verificationToken}
-                                                    errorText={errors && errors.verificationToken}
+                                                    value={token}
+                                                    errorText={errors && errors.token}
                                                     helpText=""
-                                                    onChange={(e)=>setVerificationToken(e.target.value)}
+                                                    onChange={(e)=>setToken(e.target.value)}
                                                     isRequired={true}
                                                     maxWidth="380px"
                                                 />
@@ -163,13 +170,13 @@ function TwoFactorAuthenticationWizardStep3() {
                                             <nav class="level">
                                                 <div class="level-left">
                                                     <div class="level-item">
-                                                        <Link class="button is-link is-fullwidth-mobile" to="/login/2fa/step-2"><FontAwesomeIcon icon={faArrowLeft} />&nbsp;Back</Link>
+                                                        <Link class="button is-link is-fullwidth-mobile" to="/login"><FontAwesomeIcon icon={faArrowLeft} />&nbsp;Back to Login</Link>
                                                     </div>
                                                 </div>
                                                 <div class="level-right">
                                                     <div class="level-item">
                                                         <button type="button" class="button is-primary is-fullwidth-mobile" onClick={onButtonClick}>
-                                                            <FontAwesomeIcon icon={faCheckCircle} />&nbsp;Subit and Verify
+                                                            <FontAwesomeIcon icon={faCheckCircle} />&nbsp;Subit and Login
                                                         </button>
                                                     </div>
                                                 </div>
@@ -198,4 +205,4 @@ function TwoFactorAuthenticationWizardStep3() {
     );
 }
 
-export default TwoFactorAuthenticationWizardStep3;
+export default TwoFactorAuthenticationValidateOnLogin;

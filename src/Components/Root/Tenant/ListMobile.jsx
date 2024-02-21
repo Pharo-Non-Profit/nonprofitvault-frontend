@@ -19,9 +19,6 @@ function RootTenantListMobile(props) {
             {listData && listData.results && listData.results.map(function(datum, i){
                 return <div className="mb-5" key={`mobile_tablet_${datum.id}`}>
                     {i !== 0 && <hr />}
-                    <strong>Schema:</strong>&nbsp;{datum.schemaName}
-                    <br />
-                    <br />
                     <strong>Name:</strong>&nbsp;{datum.name}
                     <br />
                     <br />

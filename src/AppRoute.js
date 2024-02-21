@@ -14,6 +14,7 @@ import Login from "./Components/Gateway/Login";
 import TwoFactorAuthenticationWizardStep1 from "./Components/Gateway/2fa/Step1";
 import TwoFactorAuthenticationWizardStep2 from "./Components/Gateway/2fa/Step2";
 import TwoFactorAuthenticationWizardStep3 from "./Components/Gateway/2fa/Step3";
+import TwoFactorAuthenticationValidateOnLogin  from "./Components/Gateway/2fa/ValidateOnLogin";
 import Index from "./Components/Gateway/Index";
 import Register from "./Components/Gateway/Register/View";
 import TopAlertBanner from "./Components/Misc/TopAlertBanner";
@@ -133,6 +134,7 @@ function AppRoute() {
                                     <Route exact path="/login/2fa/step-1" element={<TwoFactorAuthenticationWizardStep1/>}/>
                                     <Route exact path="/login/2fa/step-2" element={<TwoFactorAuthenticationWizardStep2/>}/>
                                     <Route exact path="/login/2fa/step-3" element={<TwoFactorAuthenticationWizardStep3/>}/>
+                                    <Route exact path="/login/2fa" element={<TwoFactorAuthenticationValidateOnLogin/>}/>
                                     <Route exact path="/login" element={<Login/>}/>
                                     <Route exact path="/logout" element={<LogoutRedirector/>}/>
                                     <Route exact path="/forgot-password" element={<ForgotPassword/>}/>

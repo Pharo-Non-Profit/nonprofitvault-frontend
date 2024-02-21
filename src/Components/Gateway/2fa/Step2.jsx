@@ -108,7 +108,7 @@ function TwoFactorAuthenticationWizardStep2() {
 
                                             {/* Page */}
                                             <form>
-                                                <h1 className="title is-3 has-text-centered">Two-Factor Authentication (2FA)</h1>
+                                                <h1 className="title is-2 has-text-centered">Setup Two-Factor Authentication</h1>
                                                 <FormErrorBox errors={errors} />
                                                 <p class="has-text-grey">With your 2FA application open, please scan the following QR code with your device and click next when ready.</p>
                                                 <p>&nbsp;</p>

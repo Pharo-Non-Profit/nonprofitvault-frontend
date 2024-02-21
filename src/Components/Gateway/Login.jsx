@@ -74,6 +74,7 @@ function Login() {
             setCurrentUser(response.user);
 
             if (response.user.otpEnabled === false) {
+                console.log("onLoginSuccess | redirecting to dashboard");
                 switch (response.user.role) {
                     case EXECUTIVE_ROLE_ID:
                         setForceURL("/root/tenants");
@@ -93,9 +94,11 @@ function Login() {
                 }
             } else {
                 if (response.user.otpVerified === false) {
+                    console.log("onLoginSuccess | redirecting to 2fa setup wizard");
                     setForceURL("/login/2fa/step-1");
                 } else {
-                    alert("TODO!!!");
+                    console.log("onLoginSuccess | redirecting to 2fa validation");
+                    setForceURL("/login/2fa");
                 }
             }
 

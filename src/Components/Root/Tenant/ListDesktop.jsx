@@ -18,7 +18,6 @@ function RootTenantListDesktop(props) {
                 <table className="table is-fullwidth is-striped is-hoverable is-fullwidth">
                     <thead>
                         <tr>
-                            <th>Schema</th>
                             <th>Name</th>
                             <th></th>
                         </tr>
@@ -27,7 +26,6 @@ function RootTenantListDesktop(props) {
 
                         {listData && listData.results && listData.results.map(function(tenant, i){
                             return <tr key={`desktop_${tenant.id}`}>
-                                <td data-label="Schema">{tenant.schemaName}</td>
                                 <td data-label="Name">{tenant.name}</td>
                                 <td className="is-actions-cell">
                                     <div className="buttons is-right">

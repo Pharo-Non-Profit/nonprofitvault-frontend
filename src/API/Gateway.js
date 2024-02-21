@@ -12,7 +12,8 @@ import {
     NONPROFITVAULT_DASHBOARD_API_ENDPOINT,
     NONPROFITVAULT_2FA_GENERATE_OTP_API_ENDPOINT,
     NONPROFITVAULT_2FA_GENERATE_OTP_AND_QR_CODE_API_ENDPOINT,
-    NONPROFITVAULT_2FA_VERIFY_OTP_API_ENDPOINT
+    NONPROFITVAULT_2FA_VERIFY_OTP_API_ENDPOINT,
+    NONPROFITVAULT_2FA_VALIDATE_OTP_API_ENDPOINT
 } from "../Constants/API";
 import { getAPIBaseURL } from '../Helpers/urlUtility';
 import {
@@ -324,6 +325,18 @@ export function postGenerateOTPAndQRCodeImage(onSuccessCallback, onErrorCallback
 export function postVertifyOTP(payload, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
     const axios = getCustomAxios(onUnauthorizedCallback);
     let aURL = NONPROFITVAULT_2FA_VERIFY_OTP_API_ENDPOINT;
+    axios.post(aURL, payload).then((successResponse) => {
+        // Return the callback data.
+        onSuccessCallback(successResponse.data);
+    }).catch( (exception) => {
+        let errors = camelizeKeys(exception);
+        onErrorCallback(errors);
+    }).then(onDoneCallback);
+}
+
+export function postValidateOTP(payload, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+    const axios = getCustomAxios(onUnauthorizedCallback);
+    let aURL = NONPROFITVAULT_2FA_VALIDATE_OTP_API_ENDPOINT;
     axios.post(aURL, payload).then((successResponse) => {
         // Return the callback data.
         onSuccessCallback(successResponse.data);
