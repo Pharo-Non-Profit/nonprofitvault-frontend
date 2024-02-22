@@ -166,7 +166,7 @@ function CustomerSmartFolderDetail() {
     //// Event handling.
     ////
 
-    const fetchList = (cur, limit, keywords, so, s, t) => {
+    const fetchList = (cur, limit, keywords, so, s, t, sfid) => {
         setFetching(true);
         setErrors({});
 
@@ -195,6 +195,8 @@ function CustomerSmartFolderDetail() {
         if (t !== undefined && t !== null && t !== "") {
             params.set("type", t);
         }
+
+        params.set("smart_folder_id", sfid);
 
         getObjectFileListAPI(
             params,
@@ -268,7 +270,7 @@ function CustomerSmartFolderDetail() {
         let mounted = true;
 
         if (mounted) {
-            fetchList(currentCursor, pageSize, "", sortByValue, status, type);
+            fetchList(currentCursor, pageSize, "", sortByValue, status, type, sfid);
 
             setFetching(true);
             getSmartFolderDetailAPI(
@@ -287,7 +289,7 @@ function CustomerSmartFolderDetail() {
         }
 
         return () => { mounted = false; }
-    }, [onPageLoaded, currentCursor, pageSize, sortByValue, status, type]);
+    }, [onPageLoaded, currentCursor, pageSize, sortByValue, status, type, sfid]);
 
     ////
     //// Component rendering.
@@ -337,7 +339,7 @@ function CustomerSmartFolderDetail() {
                         classificationLabelForUpload={classificationLabelForUpload}
                         onSuccessCompletionCallback={()=>{
                             setOnPageLoaded(false);
-                            fetchList(currentCursor, pageSize, "", sortByValue, status, type);
+                            fetchList(currentCursor, pageSize, "", sortByValue, status, type, sfid);
                         }}
                         onErrorCompletionCallback={()=>{
                             // Do nothing.
@@ -353,7 +355,7 @@ function CustomerSmartFolderDetail() {
                         classificationLabelForUpload={classificationLabelForUpload}
                         onSuccessCompletionCallback={()=>{
                             setOnPageLoaded(false);
-                            fetchList(currentCursor, pageSize, "", sortByValue, status, type);
+                            fetchList(currentCursor, pageSize, "", sortByValue, status, type, sfid);
                         }}
                         onErrorCompletionCallback={()=>{
                             // Do nothing.
