@@ -366,16 +366,21 @@ function CustomerSmartFolderDetail() {
                     <nav className="box" style={{ borderRadius: "20px"}}>
 
                         {/* Title + Options */}
-                        <div className="columns">
-                            <div className="column">
-                                {smartFolderDetail && <>
+                        {smartFolderDetail && <>
+                            <div className="columns">
+                                <div className="column">
                                     {smartFolderDetail.subCategory === SMART_FOLDER_BUSINESS_SUB_CATEGORY_GOVERNMENT_CANADA && <>
                                         <h1 className="title is-3"><FontAwesomeIcon className="fas" icon={faUniversity} />&nbsp;Government Related Cloud Documents</h1>
                                         <p>The following documents are need by the government for your business.</p>
                                     </>}
-                                </>}
+                                </div>
+                                <div className="column is-3 has-text-right">
+                                    <Link className="button is-small is-primary is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
+                                        <FontAwesomeIcon className="mdi" icon={faPencil} />&nbsp;Edit
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
+                        </>}
 
                         {/* Table Contents */}
                         {isFetching
@@ -418,10 +423,12 @@ function CustomerSmartFolderDetail() {
                         }
                         <div className="columns pt-5">
                             <div className="column is-half">
-                                <Link className="button is-fullwidth-mobile" to={`/documents`}><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Cloud Documents</Link>
+                                <Link className="button is-fullwidth-mobile" to={`/smart-folders`}><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Smart Folders</Link>
                             </div>
                             <div className="column is-half has-text-right">
-
+                                <Link className="button is-primary is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
+                                    <FontAwesomeIcon className="mdi" icon={faPencil} />&nbsp;Edit
+                                </Link>
                             </div>
                         </div>
                     </nav>
