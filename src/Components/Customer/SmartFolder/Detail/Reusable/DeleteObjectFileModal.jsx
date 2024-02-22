@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudUpload, faTasks, faTachometer, faPlus, faTimesCircle, faCheckCircle, faFile, faGauge, faPencil, faUsers, faIdCard, faAddressBook, faContactCard, faChartPie, faCogs, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useRecoilState } from 'recoil';
 
-import { deleteObjectFileAPI } from "../../../../../../API/ObjectFile";
-import FormErrorBox from "../../../../../Reusable/FormErrorBox";
-import PageLoadingContent from "../../../../../Reusable/PageLoadingContent";
-import { topAlertMessageState, topAlertStatusState } from "../../../../../../AppState";
+import { deleteObjectFileAPI } from "../../../../../API/ObjectFile";
+import FormErrorBox from "../../../../Reusable/FormErrorBox";
+import PageLoadingContent from "../../../../Reusable/PageLoadingContent";
+import { topAlertMessageState, topAlertStatusState } from "../../../../../AppState";
 
 
 function DeleteObjectFileModal({ objectFileIDForDeletion, setObjectFileIDForDeletion, classificationLabelForUpload, onSuccessCompletionCallback, onErrorCompletionCallback }) {

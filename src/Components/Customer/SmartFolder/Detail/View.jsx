@@ -10,8 +10,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useRecoilState } from 'recoil';
 
-import { getObjectFileListAPI, getObjectFilePresignedURLAPI } from "../../../../../API/ObjectFile";
-import { getSmartFolderDetailAPI } from "../../../../../API/SmartFolder";
+import { getObjectFileListAPI, getObjectFilePresignedURLAPI } from "../../../../API/ObjectFile";
+import { getSmartFolderDetailAPI } from "../../../../API/SmartFolder";
 import {
     topAlertMessageState,
     topAlertStatusState,
@@ -19,23 +19,26 @@ import {
     assistantFilterStatusState,
     assistantFilterTypeState,
     assistantFilterSortState
-} from "../../../../../AppState";
-import FormErrorBox from "../../../../Reusable/FormErrorBox";
-import PageLoadingContent from "../../../../Reusable/PageLoadingContent";
-import { CANADA_GOVERNMENT_FILE_CLASSIFICATION_LIST } from "../../../../../Constants/FileClassificationForCanada";
+} from "../../../../AppState";
+import FormErrorBox from "../../../Reusable/FormErrorBox";
+import PageLoadingContent from "../../../Reusable/PageLoadingContent";
+import { CANADA_GOVERNMENT_FILE_CLASSIFICATION_LIST } from "../../../../Constants/FileClassificationForCanada";
 import DeleteObjectFileModal from "./Reusable/DeleteObjectFileModal";
 import UploadObjectFileModal from "./Reusable/UploadObjectFileModal";
-import { OBJECT_FILE_CATEGORY_GOVERNMENT_CANADA } from "../../../../../Constants/App/ObjectFile";
 import SingleFile from "./SingleFile";
 import MultipleFiles from "./MultipleFiles";
+import {
+    SMART_FOLDER_BUSINESS_SUB_CATEGORY_GOVERNMENT_CANADA,
+    SMART_FOLDER_PERSONAL_SUB_CATEGORY_PROOF_OF_PURCHASE,
+    SMART_FOLDER_PERSONAL_SUB_CATEGORY_HOME_OWNERSHIP
+} from "../../../../Constants/App/SmartFolder";
 
-
-function CustomerSmartFolderDetailForObjectFileList() {
+function CustomerSmartFolderDetail() {
     ////
     //// URL Parameters.
     ////
 
-    const { id } = useParams()
+    const { sfid } = useParams()
 
     ////
     //// Global state.
@@ -269,7 +272,7 @@ function CustomerSmartFolderDetailForObjectFileList() {
 
             setFetching(true);
             getSmartFolderDetailAPI(
-                id,
+                sfid,
                 onSmartFolderDetailSuccess,
                 onSmartFolderDetailError,
                 onSmartFolderDetailDone,
@@ -342,7 +345,9 @@ function CustomerSmartFolderDetailForObjectFileList() {
                     />
                     <UploadObjectFileModal
                         currentUser={currentUser}
-                        category={OBJECT_FILE_CATEGORY_GOVERNMENT_CANADA}
+                        smartFolderID={sfid}
+                        category={smartFolderDetail.category}
+                        subCategory={smartFolderDetail.subCategory}
                         classificationKeyForUpload={classificationKeyForUpload}
                         setClassificationKeyForUpload={setClassificationKeyForUpload}
                         classificationLabelForUpload={classificationLabelForUpload}
@@ -362,8 +367,10 @@ function CustomerSmartFolderDetailForObjectFileList() {
                         <div className="columns">
                             <div className="column">
                                 {smartFolderDetail && <>
-                                    <h1 className="title is-3"><FontAwesomeIcon className="fas" icon={faUniversity} />&nbsp;Government Related Cloud Documents</h1>
-                                    <p>The following documents are need by the government for your non-profit organization.</p>
+                                    {smartFolderDetail.subCategory === SMART_FOLDER_BUSINESS_SUB_CATEGORY_GOVERNMENT_CANADA && <>
+                                        <h1 className="title is-3"><FontAwesomeIcon className="fas" icon={faUniversity} />&nbsp;Government Related Cloud Documents</h1>
+                                        <p>The following documents are need by the government for your business.</p>
+                                    </>}
                                 </>}
                             </div>
                         </div>
@@ -422,4 +429,4 @@ function CustomerSmartFolderDetailForObjectFileList() {
     );
 }
 
-export default CustomerSmartFolderDetailForObjectFileList;
+export default CustomerSmartFolderDetail;

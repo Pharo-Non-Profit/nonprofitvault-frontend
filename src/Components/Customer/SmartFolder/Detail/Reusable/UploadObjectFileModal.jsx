@@ -5,13 +5,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudUpload, faTasks, faTachometer, faPlus, faTimesCircle, faCheckCircle, faFile, faGauge, faPencil, faUsers, faIdCard, faAddressBook, faContactCard, faChartPie, faCogs, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useRecoilState } from 'recoil';
 
-import { postObjectFileCreateAPI } from "../../../../../../API/ObjectFile";
-import FormErrorBox from "../../../../../Reusable/FormErrorBox";
-import PageLoadingContent from "../../../../../Reusable/PageLoadingContent";
-import { topAlertMessageState, topAlertStatusState } from "../../../../../../AppState";
+import { postObjectFileCreateAPI } from "../../../../../API/ObjectFile";
+import FormErrorBox from "../../../../Reusable/FormErrorBox";
+import PageLoadingContent from "../../../../Reusable/PageLoadingContent";
+import { topAlertMessageState, topAlertStatusState } from "../../../../../AppState";
 
 
-function UploadObjectFileModal({ currentUser, category, classificationKeyForUpload, classificationLabelForUpload, setClassificationKeyForUpload, onSuccessCompletionCallback, onErrorCompletionCallback }) {
+function UploadObjectFileModal({
+    currentUser,
+    smartFolderID,
+    category,
+    subCategory,
+    classificationKeyForUpload,
+    classificationLabelForUpload,
+    setClassificationKeyForUpload,
+    onSuccessCompletionCallback,
+    onErrorCompletionCallback
+}) {
     ////
     //// Global state.
     ////
@@ -42,9 +52,12 @@ function UploadObjectFileModal({ currentUser, category, classificationKeyForUplo
         setErrors({});
 
         const formData = new FormData();
+
+        formData.append('smart_folder_id', smartFolderID);
         formData.append('name', "");
         formData.append('description', "");
         formData.append('category', category);
+        formData.append('sub_category', subCategory);
         formData.append('classification', classificationKeyForUpload);
         if (selectedFile !== undefined && selectedFile !== null && selectedFile !== "") {
             formData.append('file', selectedFile);
