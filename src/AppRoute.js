@@ -77,6 +77,7 @@ import CustomerSmartFolderList from "./Components/Customer/SmartFolder/List/View
 import CustomerSmartFolderAdd from "./Components/Customer/SmartFolder/Add/View";
 import CustomerSmartFolderDetail from "./Components/Customer/SmartFolder/Detail/View";
 import CustomerSmartFolderUpdate from "./Components/Customer/SmartFolder/Update/View";
+import CustomerSmartFolderDelete from "./Components/Customer/SmartFolder/Delete/View";
 
 // Customer Goverment Document Category
 import CustomerDocumentCategoryAllList from "./Components/Customer/DocumentsByCategory/All/List/View";
@@ -111,6 +112,7 @@ function AppRoute() {
                                     <Route exact path="/smart-folders/add" element={<CustomerSmartFolderAdd/>}/>
                                     <Route exact path="/smart-folder/:sfid" element={<CustomerSmartFolderDetail/>}/>
                                     <Route exact path="/smart-folder/:sfid/edit" element={<CustomerSmartFolderUpdate/>}/>
+                                    <Route exact path="/smart-folder/:sfid/delete" element={<CustomerSmartFolderDelete/>}/>
 
                                     <Route exact path="/account" element={<AccountDetail/>}/>
                                     <Route exact path="/account/2fa" element={<AccountTwoFactorAuthenticationDetail/>}/>

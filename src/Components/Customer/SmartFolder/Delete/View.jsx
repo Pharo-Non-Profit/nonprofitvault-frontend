@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Scroll from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUniversity, faTasks, faTachometer, faPlus, faTimesCircle, faCheckCircle, faCloudUpload, faGauge, faPencil, faUsers, faIdCard, faAddressBook, faContactCard, faChartPie, faCogs, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faTrashCan, faUniversity, faTasks, faTachometer, faPlus, faTimesCircle, faCheckCircle, faCloudUpload, faGauge, faPencil, faUsers, faIdCard, faAddressBook, faContactCard, faChartPie, faCogs, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useRecoilState } from 'recoil';
 
-import { putSmartFolderUpdateAPI } from "../../../../API/SmartFolder";
+import { deleteSmartFolderAPI } from "../../../../API/SmartFolder";
 import { getSmartFolderDetailAPI } from "../../../../API/SmartFolder";
 import FormErrorBox from "../../../Reusable/FormErrorBox";
 import FormInputField from "../../../Reusable/FormInputField";
@@ -24,7 +24,7 @@ import {
 } from "../../../../Constants/App/SmartFolder";
 
 
-function CustomerSmartFolderUpdate() {
+function CustomerSmartFolderDelete() {
     ////
     //// URL Parameters.
     ////
@@ -67,19 +67,11 @@ function CustomerSmartFolderUpdate() {
         setFetching(true);
         setErrors({});
 
-        const decamelizedData = {
-            id: sfid,
-            name: name,
-            description: description,
-            sort_number: parseInt(sortNumber),
-            category: category,
-            sub_category: subCategory,
-        };
-        putSmartFolderUpdateAPI(
-            decamelizedData,
-            onCustomerUserSmartFolderAddSuccess,
-            onCustomerUserSmartFolderAddError,
-            onCustomerUserSmartFolderAddDone,
+        deleteSmartFolderAPI(
+            sfid,
+            onCustomerUserSmartFolderDeleteSuccess,
+            onCustomerUserSmartFolderDeleteError,
+            onCustomerUserSmartFolderDeleteDone,
             onUnauthorized
         );
         console.log("onSubmitClick: Finished.")
@@ -116,36 +108,36 @@ function CustomerSmartFolderUpdate() {
         setFetching(false);
     }
 
-    // --- Update --- //
+    // --- Delete --- //
 
-    function onCustomerUserSmartFolderAddSuccess(response){
+    function onCustomerUserSmartFolderDeleteSuccess(response){
         // For debugging purposes only.
-        console.log("onCustomerUserSmartFolderAddSuccess: Starting...");
+        console.log("onCustomerUserSmartFolderDeleteSuccess: Starting...");
         console.log(response);
 
-        // Add a temporary banner message in the app and then clear itself after 2 seconds.
-        setTopAlertMessage("Smart folder updated");
+        // Delete a temporary banner message in the app and then clear itself after 2 seconds.
+        setTopAlertMessage("Smart folder deleted");
         setTopAlertStatus("success");
         setTimeout(() => {
-            console.log("onCustomerUserSmartFolderAddSuccess: Delayed for 2 seconds.");
-            console.log("onCustomerUserSmartFolderAddSuccess: topAlertMessage, topAlertStatus:", topAlertMessage, topAlertStatus);
+            console.log("onCustomerUserSmartFolderDeleteSuccess: Delayed for 2 seconds.");
+            console.log("onCustomerUserSmartFolderDeleteSuccess: topAlertMessage, topAlertStatus:", topAlertMessage, topAlertStatus);
             setTopAlertMessage("");
         }, 2000);
 
         // Redirect the user to the user attachments page.
-        setForceURL("/smart-folder/"+response.id);
+        setForceURL("/smart-folders");
     }
 
-    function onCustomerUserSmartFolderAddError(apiErr) {
-        console.log("onCustomerUserSmartFolderAddError: Starting...");
+    function onCustomerUserSmartFolderDeleteError(apiErr) {
+        console.log("onCustomerUserSmartFolderDeleteError: Starting...");
         setErrors(apiErr);
 
-        // Add a temporary banner message in the app and then clear itself after 2 seconds.
+        // Delete a temporary banner message in the app and then clear itself after 2 seconds.
         setTopAlertMessage("Failed submitting");
         setTopAlertStatus("danger");
         setTimeout(() => {
-            console.log("onCustomerUserSmartFolderAddError: Delayed for 2 seconds.");
-            console.log("onCustomerUserSmartFolderAddError: topAlertMessage, topAlertStatus:", topAlertMessage, topAlertStatus);
+            console.log("onCustomerUserSmartFolderDeleteError: Delayed for 2 seconds.");
+            console.log("onCustomerUserSmartFolderDeleteError: topAlertMessage, topAlertStatus:", topAlertMessage, topAlertStatus);
             setTopAlertMessage("");
         }, 2000);
 
@@ -156,8 +148,8 @@ function CustomerSmartFolderUpdate() {
         scroll.scrollToTop();
     }
 
-    function onCustomerUserSmartFolderAddDone() {
-        console.log("onCustomerUserSmartFolderAddDone: Starting...");
+    function onCustomerUserSmartFolderDeleteDone() {
+        console.log("onCustomerUserSmartFolderDeleteDone: Starting...");
         setFetching(false);
     }
 
@@ -229,7 +221,7 @@ function CustomerSmartFolderUpdate() {
                                     </Link>
                                 </>}
                             </li>
-                            <li className="is-active"><Link aria-current="page"><FontAwesomeIcon className="fas" icon={faPencil} />&nbsp;Edit</Link></li>
+                            <li className="is-active"><Link aria-current="page"><FontAwesomeIcon className="fas" icon={faTrashCan} />&nbsp;Delete</Link></li>
                         </ul>
                     </nav>
 
@@ -242,7 +234,7 @@ function CustomerSmartFolderUpdate() {
 
                     {/* Page Name */}
                     <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faCloudUpload} />&nbsp;{smartFolderDetail && <>{smartFolderDetail.name}</>}</h1>
-                    <h4 className="subtitle is-5"><FontAwesomeIcon className="fas" icon={faPencil} />&nbsp;Edit Smart Folder</h4>
+                    <h4 className="subtitle is-5"><FontAwesomeIcon className="fas" icon={faTrashCan} />&nbsp;Delete Smart Folder</h4>
                     <hr />
 
                     {/* Page Contents */}
@@ -250,9 +242,9 @@ function CustomerSmartFolderUpdate() {
 
                         {/* Name + Options */}
                         <p className="title is-3">
-                            <FontAwesomeIcon className="fas" icon={faPencil} />&nbsp;Edit Smart Folder
+                            <FontAwesomeIcon className="fas" icon={faTrashCan} />&nbsp;Delete Smart Folder
                         </p>
-                        <p className="pb-4 has-text-grey">Please fill out all the required fields before submitting.</p>
+                        {/*<p className="pb-4 has-text-grey">Please fill out all the required fields before submitting.</p>*/}
                         <FormErrorBox errors={errors} />
 
                         {isFetching
@@ -261,65 +253,12 @@ function CustomerSmartFolderUpdate() {
                             :
                             <>
                                 <div className="container">
-                                    <FormInputField
-                                        label="Name"
-                                        name="name"
-                                        placeholder="Text input"
-                                        value={name}
-                                        errorText={errors && errors.name}
-                                        helpText=""
-                                        onChange={(e)=>setName(e.target.value)}
-                                        isRequired={true}
-                                        maxWidth="400px"
-                                    />
 
-                                    <FormTextareaField
-                                        label="Description (Optional)"
-                                        name="description"
-                                        placeholder="Text input"
-                                        value={description}
-                                        errorText={errors && errors.description}
-                                        helpText=""
-                                        onChange={(e)=>setDescription(e.target.value)}
-                                        isRequired={true}
-                                        maxWidth="280px"
-                                        rows={4}
-                                    />
-
-                                    {/*<FormInputField
-                                        label="Sort Number (Optional)"
-                                        name="sortNumber"
-                                        placeholder="Number input"
-                                        value={sortNumber}
-                                        errorText={errors && errors.sortNumber}
-                                        helpText=""
-                                        onChange={(e)=>setSortNumber(e.target.value)}
-                                        isRequired={true}
-                                        maxWidth="150px"
-                                    />*/}
-
-                                    <FormSelectField
-                                        label="Category"
-                                        name="category"
-                                        placeholder="Pick"
-                                        selectedValue={category}
-                                        errorText={errors && errors.category}
-                                        helpText=""
-                                        onChange={(e)=>setCategory(parseInt(e.target.value))}
-                                        options={SMART_FOLDER_CATEGORY_OPTIONS_WITH_EMPTY_OPTIONS}
-                                    />
-
-                                    <FormSelectField
-                                        label="Sub-Category"
-                                        name="subCategory"
-                                        placeholder="Pick"
-                                        selectedValue={subCategory}
-                                        errorText={errors && errors.subCategory}
-                                        helpText=""
-                                        onChange={(e)=>setSubCategory(parseInt(e.target.value))}
-                                        options={subCategoryOptions}
-                                        disabled={category===0}
-                                    />
+                                    <article class="message is-warning">
+                                        <div class="message-body">
+                                        You are about to <strong>permentalty</strong> delete this <i>smart folder</i> and all the contents inside of it. This action cannot be undone. Are you sure you want to continue?
+                                        </div>
+                                    </article>
 
                                     <div className="columns pt-5">
                                         <div className="column is-half">
@@ -328,7 +267,7 @@ function CustomerSmartFolderUpdate() {
                                             </Link>
                                         </div>
                                         <div className="column is-half has-text-right">
-                                            <button className="button is-medium is-success is-fullwidth-mobile" onClick={onSubmitClick}><FontAwesomeIcon className="fas" icon={faCheckCircle} />&nbsp;Save</button>
+                                            <button className="button is-medium is-success is-fullwidth-mobile" onClick={onSubmitClick}><FontAwesomeIcon className="fas" icon={faCheckCircle} />&nbsp;Proceed with Deletion</button>
                                         </div>
                                     </div>
 
@@ -342,4 +281,4 @@ function CustomerSmartFolderUpdate() {
     );
 }
 
-export default CustomerSmartFolderUpdate;
+export default CustomerSmartFolderDelete;

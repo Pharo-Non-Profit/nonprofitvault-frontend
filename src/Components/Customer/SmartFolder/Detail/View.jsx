@@ -378,6 +378,10 @@ function CustomerSmartFolderDetail() {
                                     <Link className="button is-small is-primary is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
                                         <FontAwesomeIcon className="mdi" icon={faPencil} />&nbsp;Edit
                                     </Link>
+                                    &nbsp;
+                                    <Link className="button is-small is-danger is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/delete`}>
+                                        <FontAwesomeIcon className="mdi" icon={faTrashCan} />&nbsp;Delete
+                                    </Link>
                                 </div>
                             </div>
                         </>}
@@ -428,6 +432,10 @@ function CustomerSmartFolderDetail() {
                             <div className="column is-half has-text-right">
                                 <Link className="button is-primary is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
                                     <FontAwesomeIcon className="mdi" icon={faPencil} />&nbsp;Edit
+                                </Link>
+                                &nbsp;
+                                <Link className="button is-danger is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
+                                    <FontAwesomeIcon className="mdi" icon={faTrashCan} />&nbsp;Delete
                                 </Link>
                             </div>
                         </div>

@@ -6,7 +6,7 @@ import {
     faArrowCircleRight, faMoneyBills, faUniversity, faArrowCircleUp, faMessage,
     faChevronRight, faPlus, faPencil, faTimes, faBullhorn,
     faArrowUpRightFromSquare, faNewspaper, faWrench, faHardHat, faUserCircle,
-    faTasks, faGauge, faArrowRight, faUsers, faBarcode
+    faTasks, faGauge, faArrowRight, faUsers, faBarcode, faCloud
 } from '@fortawesome/free-solid-svg-icons';
 import { useRecoilState } from 'recoil';
 
@@ -89,71 +89,23 @@ function CustomerDashboard() {
                         </div>
                     </div>
 
-                    <div className="container">
-                        <div className="columns">
+                    <section class="hero is-medium is-link">
+                      <div class="hero-body">
+                        <p class="title">
+                            <FontAwesomeIcon className="fas" icon={faCloud} />&nbsp;Smart Folders
+                        </p>
+                        <p class="subtitle">
+                          Create or manage your smart folders by clicking below:
+                          <br />
+                          <br />
+                          <Link to={"/smart-folders"}>View Smart Folders&nbsp;<FontAwesomeIcon className="fas" icon={faArrowRight} /></Link>
+                          <br />
+                          <br />
+                          <Link to={"/smart-folders/add"}>Add&nbsp;<FontAwesomeIcon className="fas" icon={faArrowRight} /></Link>
+                        </p>
+                      </div>
+                    </section>
 
-                            {/* Residential */}
-                            <div className="column">
-                                <div className="card">
-                                    <div className="card-image has-background-info">
-                                        <div className="has-text-centered" style={{padding:"60px"}}>
-                                            <FontAwesomeIcon className="fas" icon={faUniversity} style={{ color: 'white', fontSize: '9rem' }} />
-                                        </div>
-                                    </div>
-                                    <div className="card-content">
-                                        <div className="media">
-
-                                          <div className="media-content">
-                                            <p className="title is-3">Government</p>
-                                          </div>
-                                        </div>
-
-                                        <div className="content">
-                                            Begin uploading, sharing or reviewing previous uploaded government related documents by clicking below:
-                                            <br />
-                                            <br />
-                                        </div>
-                                    </div>
-                                    <footer className="card-footer">
-                                        <Link to={`/documents/goverment/${currentUser.country}`} className="card-footer-item button is-primary is-large">
-                                           View&nbsp;<FontAwesomeIcon className="fas" icon={faArrowCircleRight} />
-                                        </Link>
-                                    </footer>
-                                </div>
-                            </div>
-
-                            {/* Business */}
-                            <div className="column">
-                                <div className="card">
-                                    <div className="card-image has-background-info">
-                                        <div className="has-text-centered" style={{padding:"60px"}}>
-                                            <FontAwesomeIcon className="fas" icon={faMoneyBills} style={{ color: 'white', fontSize: '9rem' }} />
-                                        </div>
-                                    </div>
-                                    <div className="card-content">
-                                        <div className="media">
-
-                                          <div className="media-content">
-                                            <p className="title is-3">Financial</p>
-                                          </div>
-                                        </div>
-
-                                        <div className="content">
-                                            Begin uploading, sharing or reviewing previous uploaded all financial related documents by clicking below:
-                                            <br />
-                                        </div>
-                                    </div>
-                                    <footer className="card-footer">
-                                        <Link to={`/documents/financial`} className="card-footer-item button is-primary is-large">
-                                           View&nbsp;<FontAwesomeIcon className="fas" icon={faArrowCircleRight} />
-                                        </Link>
-                                    </footer>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
 
 
                 </nav>
