@@ -941,13 +941,10 @@ export const registerJobSeekerState = atom({
 
 // NEW //
 
-export const ADD_EXECUTABLE_STATE_DEFAULT = {
-    assistantType: 0,
-    assistantID: ""
-};
+export const EMPTY_LIST_STATE_DEFAULT = {"results":[],"next_cursor":"000000000000000000000000","has_next_page":false};
 
-export const addExecutableState = atom({
-  key: 'addExecutable',
-  default: ADD_EXECUTABLE_STATE_DEFAULT,
+export const smartFolderListDataState = atom({
+  key: 'smartFolderListData',
+  default: EMPTY_LIST_STATE_DEFAULT,
   effects_UNSTABLE: [persistAtom],
 });

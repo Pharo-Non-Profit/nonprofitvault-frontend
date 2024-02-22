@@ -61,6 +61,13 @@ export const NONPROFITVAULT_HOW_HEAR_ABOUT_US_ITEM_SELECT_OPTIONS_API_ENDPOINT =
 export const NONPROFITVAULT_HOW_HEAR_ABOUT_US_ITEM_SELECT_OPTIONS_PUBLIC_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/select-options/how-hear-about-us-items";
 
 /**
+ * Smart Folders
+ */
+ export const NONPROFITVAULT_SMART_FOLDERS_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/smart-folders';
+ export const NONPROFITVAULT_SMART_FOLDER_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/smart-folder/{id}';
+ export const NONPROFITVAULT_SMART_FOLDER_SELECT_OPTIONS_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/smart-folders/select-options";
+
+/**
  * ObjectFiles
  */
 export const NONPROFITVAULT_OBJECT_FILES_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/object-files";

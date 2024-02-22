@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCloud, faEllipsis, faMoneyBills, faUniversity, faCodeBranch, faRobot, faHardHat, faUser, faQuestionCircle, faCogs, faUserTie, faChartBar, faCreditCard, faTags, faGraduationCap, faWrench, faBars, faBook, faRightFromBracket, faTachometer, faTasks, faSignOut, faFile, faUsers, faBuilding, faBarcode } from '@fortawesome/free-solid-svg-icons'
+import { faTable, faPlus, faCloud, faEllipsis, faMoneyBills, faUniversity, faCodeBranch, faRobot, faHardHat, faUser, faQuestionCircle, faCogs, faUserTie, faChartBar, faCreditCard, faTags, faGraduationCap, faWrench, faBars, faBook, faRightFromBracket, faTachometer, faTasks, faSignOut, faFile, faUsers, faBuilding, faBarcode } from '@fortawesome/free-solid-svg-icons'
 import { useRecoilState } from 'recoil';
 
 import {
     onHamburgerClickedState,
     currentUserState,
-    taskItemActiveCountState
+    taskItemActiveCountState,
+    smartFolderListDataState
 } from "../../AppState";
 import {
     EXECUTIVE_ROLE_ID,
@@ -26,6 +27,7 @@ export default props => {
     const [onHamburgerClicked ] = useRecoilState(onHamburgerClickedState);
     const [currentUser] = useRecoilState(currentUserState);
     const [taskItemActiveCount] = useRecoilState(taskItemActiveCountState);
+    const [smartFolderListData] = useRecoilState(smartFolderListDataState);
 
     ////
     //// Local State
@@ -203,7 +205,7 @@ export default props => {
                     </nav>
                     <aside className="menu p-4">
                         <p className="menu-label has-text-grey-light">
-                            Menu
+                            Home
                         </p>
                         <ul className="menu-list">
                             <li>
@@ -211,11 +213,51 @@ export default props => {
                                     <FontAwesomeIcon className="fas" icon={faTachometer} />&nbsp;Dashboard
                                 </Link>
                             </li>
+                        </ul>
+                        <p className="menu-label has-text-grey-light">
+                            Smart Folders
+                        </p>
+                        <ul className="menu-list">
                             <li>
-                                <Link to="/documents" className={`has-text-grey-light ${location.pathname.includes("documents") && !location.pathname.includes("goverment") && !location.pathname.includes("financial") && "is-active"}`}>
-                                    <FontAwesomeIcon className="fas" icon={faCloud} />&nbsp;Cloud Documents
+                                <Link to="/smart-folders" className={`has-text-grey-light ${location.pathname.includes("smart-folders") && !location.pathname.includes("add") && "is-active"}`}>
+                                    <FontAwesomeIcon className="fas" icon={faTable} />&nbsp;List
                                 </Link>
+                            <li>
+                                <ul className="menu-list">
+                                    {smartFolderListData && smartFolderListData.results && smartFolderListData.results.length > 0 && <>
+                                        {smartFolderListData.results.map(function(datum, i){
+                                            return (
+                                                <li>
+                                                    <Link to={`/smart-folder/${datum.id}`} className={`has-text-grey-light ${location.pathname.includes(datum.id) && "is-active"}`}>
+                                                        <FontAwesomeIcon className="fas" icon={faMoneyBills} />&nbsp;{datum.name}
+                                                    </Link>
+                                                </li>
+                                            );
+                                        })}
+                                    </>}
+
+                                    {/*
+                                    <li>
+                                        <Link to={`/documents/goverment/${currentUser.country}`} className={`has-text-grey-light ${location.pathname.includes("goverment") && "is-active"}`}>
+                                            <FontAwesomeIcon className="fas" icon={faUniversity} />&nbsp;Government
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/documents/financial" className={`has-text-grey-light ${location.pathname.includes("financial") && "is-active"}`}>
+                                            <FontAwesomeIcon className="fas" icon={faMoneyBills} />&nbsp;Financial
+                                        </Link>
+                                    </li>
+                                    */}
+                                    <li>
+                                        <Link to="/smart-folders/add" className={`has-text-grey-light ${location.pathname.includes("smart-folders/add") && "is-active"}`}>
+                                            <FontAwesomeIcon className="fas" icon={faPlus} />&nbsp;Add
+                                        </Link>
+                                    </li>
+                                </ul>
                             </li>
+                            </li>
+
+                        {/*
                             <li>
                                 <ul className="menu-list">
                                     <li>
@@ -235,7 +277,7 @@ export default props => {
                                     </li>
                                 </ul>
                             </li>
-
+*/}
                         </ul>
 
 {/*

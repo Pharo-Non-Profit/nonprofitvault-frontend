@@ -72,6 +72,11 @@ import AdminUserObjectFileUpdate from "./Components/Admin/User/ObjectFile/Update
 // Customer Dashboard
 import CustomerDashboard from "./Components/Customer/Dashboard/View";
 
+// Customer Smart Folder
+import CustomerSmartFolderList from "./Components/Customer/SmartFolder/List/View";
+import CustomerSmartFolderAdd from "./Components/Customer/SmartFolder/Add/View";
+import CustomerSmartFolderDetailForObjectFileList from "./Components/Customer/SmartFolder/Detail/ObjectFileList/View";
+
 // Customer Goverment Document Category
 import CustomerDocumentCategoryAllList from "./Components/Customer/DocumentsByCategory/All/List/View";
 import CustomerDocumentsByGovernmentCategoryListForCanada from "./Components/Customer/DocumentsByCategory/Government/Canada/List/View";
@@ -100,6 +105,10 @@ function AppRoute() {
                                     <Route exact path="/documents" element={<CustomerDocumentCategoryAllList/>}/>
 
                                     <Route exact path="/dashboard" element={<CustomerDashboard/>}/>
+
+                                    <Route exact path="/smart-folders" element={<CustomerSmartFolderList/>}/>
+                                    <Route exact path="/smart-folders/add" element={<CustomerSmartFolderAdd/>}/>
+                                    <Route exact path="/smart-folder/:id" element={<CustomerSmartFolderDetailForObjectFileList/>}/>
 
                                     <Route exact path="/account" element={<AccountDetail/>}/>
                                     <Route exact path="/account/2fa" element={<AccountTwoFactorAuthenticationDetail/>}/>
