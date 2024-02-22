@@ -11,10 +11,10 @@ import { RecoilRoot } from 'recoil';
 // System, Login, Register, Index, etc
 import LogoutRedirector from "./Components/Gateway/LogoutRedirector";
 import Login from "./Components/Gateway/Login";
-import TwoFactorAuthenticationWizardStep1 from "./Components/Gateway/2fa/Step1";
-import TwoFactorAuthenticationWizardStep2 from "./Components/Gateway/2fa/Step2";
-import TwoFactorAuthenticationWizardStep3 from "./Components/Gateway/2fa/Step3";
-import TwoFactorAuthenticationValidateOnLogin  from "./Components/Gateway/2fa/ValidateOnLogin";
+import TwoFactorAuthenticationWizardStep1 from "./Components/Gateway/2FA/Step1";
+import TwoFactorAuthenticationWizardStep2 from "./Components/Gateway/2FA/Step2";
+import TwoFactorAuthenticationWizardStep3 from "./Components/Gateway/2FA/Step3";
+import TwoFactorAuthenticationValidateOnLogin  from "./Components/Gateway/2FA/ValidateOnLogin";
 import Index from "./Components/Gateway/Index";
 import Register from "./Components/Gateway/Register/View";
 import TopAlertBanner from "./Components/Misc/TopAlertBanner";
