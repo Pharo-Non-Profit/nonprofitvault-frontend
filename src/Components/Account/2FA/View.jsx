@@ -276,10 +276,10 @@ function AccountTwoFactorAuthenticationDetail() {
                                         <FontAwesomeIcon className="mdi" icon={faUnlock} />&nbsp;Disable 2FA
                                     </button>
                                     :
-                                    <Link className="button is-small is-success is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to="/login/2fa/step-1">
+                                    <Link className="button is-small is-success is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to="/account/2fa/enable">
                                         <FontAwesomeIcon className="mdi" icon={faLock} />&nbsp;Enable 2FA
                                     </Link>
-                            }
+                                }
                             </div>
                         </div>}
 
@@ -328,7 +328,7 @@ function AccountTwoFactorAuthenticationDetail() {
                                                 <FontAwesomeIcon className="fas" icon={faTimesCircle} />&nbsp;Two-Factor Authentication Disabled
                                             </p>
                                             <p className="subtitle">
-                                                Your account does not have 2FA enabled. <b><Link to="/login/2fa/step-1">Click here&nbsp;<FontAwesomeIcon className="mdi" icon={faArrowRight} /></Link></b> to get started adding 2FA to your account.
+                                                Your account does not have 2FA enabled. <b><Link to="/account/2fa/enable">Click here&nbsp;<FontAwesomeIcon className="mdi" icon={faArrowRight} /></Link></b> to get started adding 2FA to your account.
                                             </p>
                                         </div>
                                         </section>
@@ -343,7 +343,7 @@ function AccountTwoFactorAuthenticationDetail() {
                                                 ?
                                                 <button className="button is-danger is-fullwidth-mobile" disabled={currentUser.status === 2} onClick={(e)=>{setShowDisableOTPWarning(true)}}><FontAwesomeIcon className="fas" icon={faUnlock} />&nbsp;Disable 2FA</button>
                                                 :
-                                                <Link className="button is-success is-fullwidth-mobile" disabled={currentUser.status === 2} to="/login/2fa/step-1"><FontAwesomeIcon className="fas" icon={faLock} />&nbsp;Enable 2FA</Link>
+                                                <Link className="button is-success is-fullwidth-mobile" disabled={currentUser.status === 2} to="/account/2fa/enable"><FontAwesomeIcon className="fas" icon={faLock} />&nbsp;Enable 2FA</Link>
                                             }
                                         </div>
                                     </div>
