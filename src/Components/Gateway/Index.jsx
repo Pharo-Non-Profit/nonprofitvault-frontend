@@ -158,7 +158,7 @@ function Index() {
                                             <nav className="level">
                                                 <div className="level-item has-text-centered">
                                                     <div>
-                                                        <a href="https://github.com/bartmika/nonprofitvault-backend" className="is-size-7-tablet"><FontAwesomeIcon icon={faArrowLeft} /> Back Home</a>
+                                                        <a href="https://github.com/Pharo-Non-Profit" className="is-size-7-tablet"><FontAwesomeIcon icon={faArrowLeft} /> Back Home</a>
                                                     </div>
                                                 </div>
                                                 <div className="level-item has-text-centered">

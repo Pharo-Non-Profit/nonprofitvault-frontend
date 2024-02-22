@@ -9,6 +9,9 @@ import {
 import { useRecoilState } from 'recoil';
 
 import { getAccountDetailAPI } from "../../../API/Account";
+import DateTimeTextFormatter from "../../Reusable/EveryPage/DateTimeTextFormatter";
+import CheckboxTextFormatter from "../../Reusable/EveryPage/CheckboxTextFormatter";
+import SelectTextFormatter from "../../Reusable/EveryPage/SelectTextFormatter";
 import FormErrorBox from "../../Reusable/FormErrorBox";
 import FormTextareaField from "../../Reusable/FormTextareaField";
 import FormRadioField from "../../Reusable/FormRadioField";
@@ -22,12 +25,19 @@ import PageLoadingContent from "../../Reusable/PageLoadingContent";
 import FormInputField from "../../Reusable/FormInputField";
 import FormTextYesNoRow from "../../Reusable/FormRowTextYesNo";
 import DataDisplayRowImage from "../../Reusable/DataDisplayRowImage";
-
+import TagsTextFormatter from "../../Reusable/EveryPage/TagsTextFormatter";
 import URLTextFormatter from "../../Reusable/EveryPage/URLTextFormatter";
 import EmailTextFormatter from "../../Reusable/EveryPage/EmailTextFormatter";
 import PhoneTextFormatter from "../../Reusable/EveryPage/PhoneTextFormatter";
-
+import DateTextFormatter from "../../Reusable/EveryPage/DateTextFormatter";
+import { COMMERCIAL_CUSTOMER_TYPE_OF_ID } from "../../../Constants/App";
 import { EXECUTIVE_ROLE_ID, MANAGEMENT_ROLE_ID, FRONTLINE_ROLE_ID, ASSOCIATE_ROLE_ID, CUSTOMER_ROLE_ID } from "../../../Constants/App";
+import {
+    USER_PHONE_TYPE_OF_OPTIONS_WITH_EMPTY_OPTIONS,
+    USER_TYPE_OF_FILTER_OPTIONS,
+    USER_ORGANIZATION_TYPE_OPTIONS,
+    GENDER_OPTIONS_WITH_EMPTY_OPTION
+} from "../../../Constants/FieldOptions";
 
 
 function AccountDetail() {
@@ -179,7 +189,7 @@ function AccountDetail() {
                         {/* Title + Options */}
                         {currentUser && <div className="columns">
                             <div className="column">
-                                <p className="title is-4"><FontAwesomeIcon className="fas" icon={faTable} />&nbsp;Summary</p>
+                                <p className="title is-4"><FontAwesomeIcon className="fas" icon={faTable} />&nbsp;Detail</p>
                             </div>
                             <div className="column has-text-right">
                                 <Link to={`/account/edit`} className="button is-small is-warning is-fullwidth-mobile" type="button" disabled={currentUser.status === 2}>
@@ -214,7 +224,318 @@ function AccountDetail() {
                                         </ul>
                                     </div>
 
-                                    <h1>TODO</h1>
+                                    {/*
+                                        ##########################
+                                        Peronsal Information Table
+                                        ##########################
+                                    */}
+                                    <table className="table is-fullwidth">
+                                        <thead>
+                                            <tr className="has-background-black">
+                                                <th className="has-text-white" colSpan="2">
+                                                    Personal Information
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Type:</th>
+                                                <td>
+                                                    <SelectTextFormatter
+                                                        selectedValue={currentUser.type}
+                                                        options={USER_TYPE_OF_FILTER_OPTIONS}
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>First Name:</th>
+                                                <td>{currentUser.firstName}</td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Last Name:</th>
+                                                <td>{currentUser.lastName}</td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Date of Birth:</th>
+                                                <td>
+                                                    {currentUser.birthDate
+                                                        ?
+                                                        <DateTextFormatter value={currentUser.birthDate} />
+                                                        :
+                                                        <>-</>
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Gender:</th>
+                                                <td>
+                                                    {currentUser.gender
+                                                        ?
+                                                        <>
+                                                            <SelectTextFormatter
+                                                                selectedValue={currentUser.gender}
+                                                                options={GENDER_OPTIONS_WITH_EMPTY_OPTION}
+                                                            />
+                                                            {currentUser.gender === 1 && <>
+                                                                &nbsp;-&nbsp;{currentUser.genderOther}
+                                                            </>}
+                                                        </>
+                                                        :
+                                                        <>-</>
+                                                    }
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Description:</th>
+                                                <td>
+                                                    {currentUser.description
+                                                        ?
+                                                        currentUser.description
+                                                        :
+                                                        <>-</>
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Tags:</th>
+                                                <td>
+                                                    {currentUser.tags && currentUser.tags.length > 0
+                                                        ?
+                                                        <TagsTextFormatter tags={currentUser.tags} />
+                                                        :
+                                                        <>-</>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    {/*
+                                        ##########################
+                                        Company Information Table
+                                        ##########################
+                                    */}
+                                    {currentUser.type === COMMERCIAL_CUSTOMER_TYPE_OF_ID &&
+                                        <table className="table is-fullwidth">
+                                            <thead>
+                                                <tr className="has-background-black">
+                                                    <th className="has-text-white" colSpan="2">
+                                                        Company Information
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th className="has-background-light" style={{width: "30%"}}>Company Name:</th>
+                                                    <td>{currentUser.organizationName}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th className="has-background-light" style={{width: "30%"}}>Company Type:</th>
+                                                    <td>
+                                                        <SelectTextFormatter
+                                                            selectedValue={currentUser.organizationType}
+                                                            options={USER_ORGANIZATION_TYPE_OPTIONS}
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    }
+
+                                    {/*
+                                        ###################
+                                        Contact Point Table
+                                        ###################
+                                    */}
+                                    <table className="table is-fullwidth">
+                                        <thead>
+                                            <tr className="has-background-black">
+                                                <th className="has-text-white" colSpan="2">
+                                                    Contact Point
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Email:</th>
+                                                <td>
+                                                    {currentUser.email
+                                                        ?
+                                                        <EmailTextFormatter value={currentUser.email} />
+                                                        :
+                                                        <>-</>
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>I agree to receive electronic email:</th>
+                                                <td><CheckboxTextFormatter checked={currentUser.isOkToEmail} /></td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Phone:</th>
+                                                <td>
+                                                    {currentUser.phone
+                                                        ?
+                                                        <PhoneTextFormatter value={currentUser.phone} />
+                                                        :
+                                                        <>-</>
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Phone Type:</th>
+                                                <td>
+                                                    <SelectTextFormatter
+                                                        selectedValue={currentUser.phoneType}
+                                                        options={USER_PHONE_TYPE_OF_OPTIONS_WITH_EMPTY_OPTIONS}
+                                                    />
+                                                </td>
+                                            </tr>
+                                            {currentUser.otherPhone &&
+                                                <>
+                                                    <tr>
+                                                        <th className="has-background-light" style={{width: "30%"}}>Other Phone (Optional):</th>
+                                                        <td>
+                                                            {currentUser.otherPhone
+                                                                ?
+                                                                <PhoneTextFormatter value={currentUser.otherPhone} />
+                                                                :
+                                                                <>-</>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th className="has-background-light" style={{width: "30%"}}>Other Phone Type (Optional):</th>
+                                                        <td>
+                                                            <SelectTextFormatter
+                                                                selectedValue={currentUser.otherPhoneType}
+                                                                options={USER_PHONE_TYPE_OF_OPTIONS_WITH_EMPTY_OPTIONS}
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                </>
+                                            }
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>I agree to receive texts to my phone:</th>
+                                                <td><CheckboxTextFormatter checked={currentUser.isOkToText} /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    {/*
+                                        ##########################
+                                        Address Table
+                                        ##########################
+                                    */}
+                                    <table className="table is-fullwidth">
+                                        <thead>
+                                            <tr className="has-background-black">
+                                                <th className="has-text-white" colSpan="2">
+                                                    Address
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Location:</th>
+                                                <td>
+                                                    <URLTextFormatter
+                                                        urlKey={currentUser.fullAddressWithPostalCode}
+                                                        urlValue={currentUser.fullAddressUrl}
+                                                        type={`external`}
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    {/*
+                                        ##########################
+                                        Internal Metrics Table
+                                        ##########################
+                                    */}
+                                    <table className="table is-fullwidth">
+                                        <thead>
+                                            <tr className="has-background-black">
+                                                <th className="has-text-white" colSpan="2">
+                                                   Internal Metrics
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>How did they discover us?:</th>
+                                                <td>
+                                                    {currentUser.isHowDidYouHearAboutUsOther
+                                                        ?
+                                                        currentUser.howDidYouHearAboutUsOther
+                                                        :
+                                                        currentUser.howDidYouHearAboutUsText
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Join date:</th>
+                                                <td><DateTimeTextFormatter value={currentUser.joinDate} /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    {/*
+
+                                        <DataDisplayRowHowHearAboutUsItem
+                                            howDidYouHearAboutUsID={currentUser.howDidYouHearAboutUsID}
+                                        />
+
+                                        {currentUser.howDidYouHearAboutUsOther !== undefined && currentUser.howDidYouHearAboutUsOther !== null && currentUser.howDidYouHearAboutUsOther !== null &&
+                                            <DataDisplayRowText
+                                                label="How did you hear about us? (Other)"
+                                                value={currentUser.howDidYouHearAboutUsOther}
+                                            />
+                                        }
+                                    */}
+
+                                    {/*
+                                        ##########################
+                                        System Table
+                                        ##########################
+                                    */}
+                                    <table className="table is-fullwidth">
+                                        <thead>
+                                            <tr className="has-background-black">
+                                                <th className="has-text-white" colSpan="2">
+                                                  System
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Created at:</th>
+                                                <td><DateTimeTextFormatter value={currentUser.createdAt} /></td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Created by:</th>
+                                                <td>{currentUser.createdByUserName}</td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Created from:</th>
+                                                <td>{currentUser.createdFromIpAddress}</td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Modified at:</th>
+                                                <td><DateTimeTextFormatter value={currentUser.modifiedAt} /></td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Modified by:</th>
+                                                <td>{currentUser.modifiedByUserName}</td>
+                                            </tr>
+                                            <tr>
+                                                <th className="has-background-light" style={{width: "30%"}}>Modified from:</th>
+                                                <td>{currentUser.modifiedFromIpAddress}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
                                     <div className="columns pt-5">
                                         <div className="column is-half">

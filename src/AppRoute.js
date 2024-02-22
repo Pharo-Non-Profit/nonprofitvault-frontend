@@ -27,6 +27,7 @@ import PasswordReset from "./Components/Gateway/PasswordReset";
 
 // Account
 import AccountDetail from "./Components/Account/Detail/View";
+import AccountTwoFactorAuthenticationDetail from "./Components/Account/2FA/View";
 
 // Root
 import RootDashboard from "./Components/Root/Dashboard";
@@ -100,6 +101,7 @@ function AppRoute() {
                                     <Route exact path="/dashboard" element={<CustomerDashboard/>}/>
 
                                     <Route exact path="/account" element={<AccountDetail/>}/>
+                                    <Route exact path="/account/2fa" element={<AccountTwoFactorAuthenticationDetail/>}/>
 
                                     <Route exact path="/admin/user/:cid/downgrade" element={<AdminUserDowngradeOperation/>}/>
                                     <Route exact path="/admin/user/:cid/upgrade" element={<AdminUserUpgradeOperation/>}/>
