@@ -28,16 +28,6 @@ function MultipleFiles({ currentUser, fileClassification, listData, onDownloadDo
 
             <div class="columns">
                 <div class="column">
-                    {matchedArr.length > 0
-                        ?
-                        <span className="has-text-success">
-                            <FontAwesomeIcon className="mdi" icon={faCheckCircle} />&nbsp;
-                        </span>
-                        :
-                        <span className="has-text-danger">
-                            <FontAwesomeIcon className="mdi" icon={faTimesCircle} />&nbsp;
-                        </span>
-                    }
                     <u>{fileClassification.label}</u>
                 </div>
                 <div class="column has-text-right is-3">

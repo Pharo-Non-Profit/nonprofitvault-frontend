@@ -26,16 +26,6 @@ function SingleFile({ currentUser, fileClassification, listData, onDownloadDocum
         <h1 class="title is-3">
             <div class="columns">
                 <div class="column">
-                    {isMatch
-                        ?
-                        <span className="has-text-success">
-                            <FontAwesomeIcon className="mdi" icon={faCheckCircle} />&nbsp;
-                        </span>
-                        :
-                        <span className="has-text-danger">
-                            <FontAwesomeIcon className="mdi" icon={faTimesCircle} />&nbsp;
-                        </span>
-                    }
                     <u>{fileClassification.label}</u>
                 </div>
                 <div class="column has-text-right is-3">
