@@ -263,7 +263,7 @@ function AccountEnableTwoFactorAuthentication() {
                     <nav className="breadcrumb has-background-light p-4 is-hidden-desktop" aria-label="breadcrumbs">
                         <ul>
                             <li className="">
-                                <Link to={generateBreadcrumbItemLink(currentUser)} aria-current="page"><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Dashboard</Link>
+                                <Link to="/account/2fa" aria-current="page"><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Detail (2FA)</Link>
                             </li>
                         </ul>
                     </nav>
@@ -293,7 +293,7 @@ function AccountEnableTwoFactorAuthentication() {
                                                 */}
                                                 <div className="column">
 
-                                                    <h1 className="title is-3">Step 1</h1>
+                                                    <h1 className="title is-4">Step 1</h1>
                                                     <hr />
                                                     <p class="has-text-grey">To begin, please download any of the following applications for your mobile device.</p>
                                                     {/* Google Authenticator */}
@@ -301,7 +301,7 @@ function AccountEnableTwoFactorAuthentication() {
                                                         <div className="card-content">
                                                             <div className="media">
                                                               <div className="media-content">
-                                                                <p className="title is-4"><u>Google Authenticator</u></p>
+                                                                <p className="title is-6"><u>Google Authenticator</u></p>
                                                               </div>
                                                             </div>
 
@@ -334,7 +334,7 @@ function AccountEnableTwoFactorAuthentication() {
                                                             <div className="media">
 
                                                               <div className="media-content">
-                                                                <p className="title is-4"><u>Authenticator</u></p>
+                                                                <p className="title is-6"><u>Authenticator</u></p>
                                                               </div>
                                                             </div>
 
@@ -363,7 +363,7 @@ function AccountEnableTwoFactorAuthentication() {
                                                     ------
                                                 */}
                                                 <div className="column">
-                                                    <h1 className="title is-3">Step 2</h1>
+                                                    <h1 className="title is-4">Step 2</h1>
                                                     <hr />
                                                     <p class="has-text-grey">With your 2FA application open, please scan the following QR code with your device and click next when ready.</p>
                                                     <p>&nbsp;</p>
@@ -393,7 +393,7 @@ function AccountEnableTwoFactorAuthentication() {
                                                     ------
                                                 */}
                                                 <div className="column">
-                                                    <h1 className="title is-3">Step 3</h1>
+                                                    <h1 className="title is-4">Step 3</h1>
                                                     <hr />
                                                     <p class="has-text-grey">Open the two-step verification app on your mobile device to get your verification code.</p>
                                                     <p>&nbsp;</p>

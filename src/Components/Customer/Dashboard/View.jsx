@@ -77,17 +77,27 @@ function CustomerDashboard() {
     return (
         <div class="container">
             <section class="section">
-                <nav class="breadcrumb" aria-label="breadcrumbs">
+                {/* Desktop Breadcrumbs */}
+                <nav class="breadcrumb has-background-light p-4" aria-label="breadcrumbs">
                     <ul>
                         <li class="is-active"><Link to="/dashboard" aria-current="page"><FontAwesomeIcon className="fas" icon={faGauge} />&nbsp;Dashboard</Link></li>
                     </ul>
                 </nav>
-                <nav class="box">
+
+                {/* Page Title */}
+                <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faGauge} />&nbsp;Dashboard</h1>
+                <hr />
+
+
+                {/* Page Content */}
+                <nav class="box" style={{ borderRadius: "20px"}}>
+                    {/*
                     <div class="columns">
                         <div class="column">
-                            <h1 class="title is-4"><FontAwesomeIcon className="fas" icon={faGauge} />&nbsp;Dashboard</h1>
+                            <h1 class="title is-2"><FontAwesomeIcon className="fas" icon={faGauge} />&nbsp;Dashboard</h1>
                         </div>
                     </div>
+                    */}
 
                     <section class="hero is-medium is-link">
                       <div class="hero-body">

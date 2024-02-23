@@ -249,7 +249,7 @@ function CustomerSmartFolderUpdate() {
                     <nav class="box" style={{ borderRadius: "20px"}}>
 
                         {/* Name + Options */}
-                        <p className="title is-3">
+                        <p className="title is-4">
                             <FontAwesomeIcon className="fas" icon={faPencil} />&nbsp;Edit Smart Folder
                         </p>
                         <p className="pb-4 has-text-grey">Please fill out all the required fields before submitting.</p>

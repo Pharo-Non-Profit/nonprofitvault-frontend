@@ -371,7 +371,9 @@ function CustomerSmartFolderDetail() {
                             <div className="columns">
                                 <div className="column">
                                     {smartFolderDetail.subCategory === SMART_FOLDER_BUSINESS_SUB_CATEGORY_GOVERNMENT_CANADA && <>
-                                        <h1 className="title is-3"><FontAwesomeIcon className="fas" icon={faUniversity} />&nbsp;Government Related Cloud Documents</h1>
+                                        <h1 className="title is-4">
+                                            <FontAwesomeIcon className="fas" icon={faUniversity} />&nbsp;Government Related Cloud Documents
+                                        </h1>
                                         <p>The following documents are need by the government for your business.</p>
                                     </>}
                                 </div>

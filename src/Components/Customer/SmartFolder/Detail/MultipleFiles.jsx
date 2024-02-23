@@ -24,7 +24,7 @@ function MultipleFiles({ currentUser, fileClassification, listData, onDownloadDo
 
     return (<>
         <hr />
-        <h1 class="title is-3">
+        <h1 class="title is-5">
 
             <div class="columns">
                 <div class="column">
