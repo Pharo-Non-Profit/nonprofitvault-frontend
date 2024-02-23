@@ -5,7 +5,8 @@ import { DateTime } from "luxon";
 import {
     NONPROFITVAULT_SMART_FOLDERS_API_ENDPOINT,
     NONPROFITVAULT_SMART_FOLDER_API_ENDPOINT,
-    NONPROFITVAULT_SMART_FOLDER_SELECT_OPTIONS_API_ENDPOINT
+    NONPROFITVAULT_SMART_FOLDER_SELECT_OPTIONS_API_ENDPOINT,
+    NONPROFITVAULT_SMART_FOLDER_OPERATION_GENERATE_SHARABLE_LINK_API_ENDPOINT
 } from "../Constants/API";
 
 
@@ -113,6 +114,7 @@ export function getSmartFolderListAPI(filtersMap=new Map(), onSuccessCallback, o
 //     }).then(onDoneCallback);
 // }
 //
+
 export function postSmartFolderCreateAPI(data, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
     const axios = getCustomAxios(onUnauthorizedCallback);
 
@@ -203,3 +205,19 @@ export function deleteSmartFolderAPI(id, onSuccessCallback, onErrorCallback, onD
 //         onErrorCallback(errors);
 //     }).then(onDoneCallback);
 // }
+
+export function postSmartFolderOperationSharableLinkAPI(decamelizedData, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+    const axios = getCustomAxios(onUnauthorizedCallback);
+    axios.post(NONPROFITVAULT_SMART_FOLDER_OPERATION_GENERATE_SHARABLE_LINK_API_ENDPOINT, decamelizedData).then((successResponse) => {
+        const responseData = successResponse.data;
+
+        // Snake-case from API to camel-case for React.
+        const data = camelizeKeys(responseData);
+
+        // Return the callback data.
+        onSuccessCallback(data);
+    }).catch( (exception) => {
+        let errors = camelizeKeys(exception);
+        onErrorCallback(errors);
+    }).then(onDoneCallback);
+}

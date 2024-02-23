@@ -32,6 +32,8 @@ import {
     SMART_FOLDER_PERSONAL_SUB_CATEGORY_PROOF_OF_PURCHASE,
     SMART_FOLDER_PERSONAL_SUB_CATEGORY_HOME_OWNERSHIP
 } from "../../../../Constants/App/SmartFolder";
+import ShareSmartFolderModal from "./ModalShareSmartFolder";
+
 
 function CustomerSmartFolderDetail() {
     ////
@@ -76,6 +78,9 @@ function CustomerSmartFolderDetail() {
 
     // Data
     const [smartFolderDetail, setSmartFolderDetail] = useState("");
+
+    // Modal related states.
+    const [showShareModalForSmartFolderID, setShowShareModalForSmartFolderID] = useState("");
 
     ////
     //// API.
@@ -362,6 +367,13 @@ function CustomerSmartFolderDetail() {
                             // Do nothing.
                         }}
                     />
+                    <ShareSmartFolderModal
+                        showShareModalForSmartFolderID={showShareModalForSmartFolderID}
+                        setShowShareModalForSmartFolderID={setShowShareModalForSmartFolderID}
+                        smartFolderName={smartFolderDetail.name}
+                        onSuccessCompletionCallback={null}
+                        onErrorCompletionCallback={null}
+                    />
 
                     {/* Page Table */}
                     <nav className="box" style={{ borderRadius: "20px"}}>
@@ -378,9 +390,9 @@ function CustomerSmartFolderDetail() {
                                     </>}
                                 </div>
                                 <div className="column is-3 has-text-right">
-                                    <Link className="button is-small is-info is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/share`}>
+                                    <button className="button is-small is-info is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} onClick={(e)=>setShowShareModalForSmartFolderID(sfid)}>
                                         <FontAwesomeIcon className="mdi" icon={faShare} /><span className="is-hidden-tablet">&nbsp;Share</span>
-                                    </Link>
+                                    </button>
                                     &nbsp;
                                     <Link className="button is-small is-primary is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
                                         <FontAwesomeIcon className="mdi" icon={faPencil} /><span className="is-hidden-tablet">&nbsp;Edit</span>
@@ -437,9 +449,9 @@ function CustomerSmartFolderDetail() {
                                 <Link className="button is-medium is-fullwidth-mobile" to={`/smart-folders`}><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Smart Folders</Link>
                             </div>
                             <div className="column is-half has-text-right">
-                                <Link className="button is-medium is-info is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/share`}>
+                                <button className="button is-medium is-info is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} onClick={(e)=>setShowShareModalForSmartFolderID(sfid)}>
                                     <FontAwesomeIcon className="mdi" icon={faShare} />&nbsp;Share
-                                </Link>
+                                </button>
                                 &nbsp;
                                 <Link className="button is-medium is-primary is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
                                     <FontAwesomeIcon className="mdi" icon={faPencil} />&nbsp;Edit
