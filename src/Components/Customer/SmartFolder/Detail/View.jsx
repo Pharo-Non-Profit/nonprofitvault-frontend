@@ -3,7 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import Scroll from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faCloudDownload, faCloudUpload, faChevronRight, faCloud,
+    faCloudDownload, faChevronRight, faCloud,
     faFilterCircleXmark,faArrowLeft, faUniversity, faTachometer,
     faEye, faPencil, faTrashCan, faPlus, faGauge, faArrowRight, faTable,
     faArrowUpRightFromSquare, faRefresh, faFilter, faSearch
@@ -330,6 +330,7 @@ function CustomerSmartFolderDetail() {
 
                     {/* Page Title */}
                     <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faCloud} />&nbsp;{smartFolderDetail && <>{smartFolderDetail.name}</>}</h1>
+                    <h4 className="subtitle is-5"><FontAwesomeIcon className="fas" icon={faEye} />&nbsp;Smart Folder Detail</h4>
                     <hr />
 
                     {/* Page Modal(s) */}

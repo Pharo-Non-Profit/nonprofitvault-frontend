@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import Scroll from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faCloudUpload, faArrowLeft, faSearch, faTable, faFilter, faFilterCircleXmark,
+    faCloud, faArrowLeft, faSearch, faTable, faFilter, faFilterCircleXmark,
     faArrowCircleRight, faMoneyBills, faUniversity, faArrowCircleUp, faMessage,
     faChevronRight, faPlus, faPencil, faTimes, faBullhorn,
     faArrowUpRightFromSquare, faNewspaper, faWrench, faHardHat, faUserCircle,
@@ -201,7 +201,7 @@ function CustomerSmartFolderList() {
                 <nav className="breadcrumb has-background-light p-4 is-hidden-touch" aria-label="breadcrumbs">
                     <ul className="">
                         <li className=""><Link to="/dashboard" aria-current="page"><FontAwesomeIcon className="fas" icon={faGauge} />&nbsp;Dashboard</Link></li>
-                        <li className="is-active"><Link aria-current="page"><FontAwesomeIcon className="fas" icon={faCloudUpload} />&nbsp;Smart Folders</Link></li>
+                        <li className="is-active"><Link aria-current="page"><FontAwesomeIcon className="fas" icon={faCloud} />&nbsp;Smart Folders</Link></li>
                     </ul>
                 </nav>
 
@@ -217,7 +217,7 @@ function CustomerSmartFolderList() {
                 </nav>
 
                 {/* Page Title */}
-                <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faCloudUpload} />&nbsp;Smart Folders</h1>
+                <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faCloud} />&nbsp;Smart Folders</h1>
                 <hr />
 
                 {/* Page Menu Options */}

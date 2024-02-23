@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Scroll from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCloudUpload, faTasks, faTachometer, faPlus, faTimesCircle, faCheckCircle, faFile, faGauge, faPencil, faUsers, faIdCard, faAddressBook, faContactCard, faChartPie, faCogs, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faCloud, faTasks, faTachometer, faPlus, faTimesCircle, faCheckCircle, faFile, faGauge, faPencil, faUsers, faIdCard, faAddressBook, faContactCard, faChartPie, faCogs, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useRecoilState } from 'recoil';
 
 import { postObjectFileCreateAPI } from "../../../../../API/ObjectFile";
@@ -155,7 +155,7 @@ function UploadObjectFileModal({
                 <div className="modal-background"></div>
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p className="modal-card-title"><FontAwesomeIcon className="mdi" icon={faCloudUpload} />&nbsp;Upload Document</p>
+                        <p className="modal-card-title"><FontAwesomeIcon className="mdi" icon={faCloud} />&nbsp;Upload Document</p>
                         <button className="delete" aria-label="close" onClick={(e)=>{setClassificationKeyForUpload("")}}></button>
                     </header>
                     <section className="modal-card-body">

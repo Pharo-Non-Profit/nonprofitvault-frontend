@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Scroll from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUniversity, faTasks, faTachometer, faPlus, faTimesCircle, faCheckCircle, faCloudUpload, faGauge, faPencil, faUsers, faIdCard, faAddressBook, faContactCard, faChartPie, faCogs, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faUniversity, faTasks, faTachometer, faPlus, faTimesCircle, faCheckCircle, faCloud, faGauge, faPencil, faUsers, faIdCard, faAddressBook, faContactCard, faChartPie, faCogs, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useRecoilState } from 'recoil';
 
 import { putSmartFolderUpdateAPI } from "../../../../API/SmartFolder";
@@ -221,7 +221,7 @@ function CustomerSmartFolderUpdate() {
                     <nav className="breadcrumb has-background-light p-4 is-hidden-touch" aria-label="breadcrumbs">
                         <ul>
                             <li className=""><Link to="/dashboard" aria-current="page"><FontAwesomeIcon className="fas" icon={faGauge} />&nbsp;Dashboard</Link></li>
-                            <li className=""><Link to="/smart-folders" aria-current="page"><FontAwesomeIcon className="fas" icon={faCloudUpload} />&nbsp;Smart Folders</Link></li>
+                            <li className=""><Link to="/smart-folders" aria-current="page"><FontAwesomeIcon className="fas" icon={faCloud} />&nbsp;Smart Folders</Link></li>
                             <li className="">
                                 {smartFolderDetail && <>
                                     <Link aria-current="page" to={`/smart-folder/${sfid}`}>
@@ -241,7 +241,7 @@ function CustomerSmartFolderUpdate() {
                     </nav>
 
                     {/* Page Name */}
-                    <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faCloudUpload} />&nbsp;{smartFolderDetail && <>{smartFolderDetail.name}</>}</h1>
+                    <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faCloud} />&nbsp;{smartFolderDetail && <>{smartFolderDetail.name}</>}</h1>
                     <h4 className="subtitle is-5"><FontAwesomeIcon className="fas" icon={faPencil} />&nbsp;Edit Smart Folder</h4>
                     <hr />
 
