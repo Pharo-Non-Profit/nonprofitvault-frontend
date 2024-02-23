@@ -3,7 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import Scroll from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faCloudDownload, faChevronRight, faCloud,
+    faCloudDownload, faChevronRight, faCloud, faShare,
     faFilterCircleXmark,faArrowLeft, faUniversity, faTachometer,
     faEye, faPencil, faTrashCan, faPlus, faGauge, faArrowRight, faTable,
     faArrowUpRightFromSquare, faRefresh, faFilter, faSearch
@@ -376,12 +376,16 @@ function CustomerSmartFolderDetail() {
                                     </>}
                                 </div>
                                 <div className="column is-3 has-text-right">
+                                    <Link className="button is-small is-info is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/share`}>
+                                        <FontAwesomeIcon className="mdi" icon={faShare} /><span className="is-hidden-tablet">&nbsp;Share</span>
+                                    </Link>
+                                    &nbsp;
                                     <Link className="button is-small is-primary is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
-                                        <FontAwesomeIcon className="mdi" icon={faPencil} />&nbsp;Edit
+                                        <FontAwesomeIcon className="mdi" icon={faPencil} /><span className="is-hidden-tablet">&nbsp;Edit</span>
                                     </Link>
                                     &nbsp;
                                     <Link className="button is-small is-danger is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/delete`}>
-                                        <FontAwesomeIcon className="mdi" icon={faTrashCan} />&nbsp;Delete
+                                        <FontAwesomeIcon className="mdi" icon={faTrashCan} /><span className="is-hidden-tablet">&nbsp;Delete</span>
                                     </Link>
                                 </div>
                             </div>
@@ -428,14 +432,18 @@ function CustomerSmartFolderDetail() {
                         }
                         <div className="columns pt-5">
                             <div className="column is-half">
-                                <Link className="button is-fullwidth-mobile" to={`/smart-folders`}><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Smart Folders</Link>
+                                <Link className="button is-medium is-fullwidth-mobile" to={`/smart-folders`}><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Smart Folders</Link>
                             </div>
                             <div className="column is-half has-text-right">
-                                <Link className="button is-primary is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
+                                <Link className="button is-medium is-info is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/share`}>
+                                    <FontAwesomeIcon className="mdi" icon={faShare} />&nbsp;Share
+                                </Link>
+                                &nbsp;
+                                <Link className="button is-medium is-primary is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
                                     <FontAwesomeIcon className="mdi" icon={faPencil} />&nbsp;Edit
                                 </Link>
                                 &nbsp;
-                                <Link className="button is-danger is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
+                                <Link className="button is-medium is-danger is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to={`/smart-folder/${smartFolderDetail.id}/edit`}>
                                     <FontAwesomeIcon className="mdi" icon={faTrashCan} />&nbsp;Delete
                                 </Link>
                             </div>

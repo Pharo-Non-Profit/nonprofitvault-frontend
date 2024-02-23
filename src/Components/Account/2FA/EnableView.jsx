@@ -262,13 +262,15 @@ function AccountEnableTwoFactorAuthentication() {
                     {/* Mobile Breadcrumbs */}
                     <nav className="breadcrumb has-background-light p-4 is-hidden-desktop" aria-label="breadcrumbs">
                         <ul>
-                            <li className=""><Link to={generateBreadcrumbItemLink(currentUser)} aria-current="page"><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Dashboard</Link></li>
+                            <li className="">
+                                <Link to={generateBreadcrumbItemLink(currentUser)} aria-current="page"><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Dashboard</Link>
+                            </li>
                         </ul>
                     </nav>
 
                     {/* Page Title */}
-                    <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faUserCircle} />&nbsp;User</h1>
-                    <h4 className="subtitle is-4"><FontAwesomeIcon className="fas" icon={faEye} />&nbsp;Detail</h4>
+                    <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faUserCircle} />&nbsp;Profile</h1>
+                    <h4 className="subtitle is-4"><FontAwesomeIcon className="fas" icon={faEye} />&nbsp;Detail (2FA)</h4>
                     <hr />
 
                     {/* Page */}

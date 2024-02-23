@@ -32,7 +32,7 @@ function MultipleFiles({ currentUser, fileClassification, listData, onDownloadDo
                 </div>
                 <div class="column has-text-right is-3">
                     <button onClick={(a,b)=>onUploadDocumentClick(fileClassification.id, fileClassification.label)} class="button is-small is-success is-fullwidth-mobile" type="button">
-                        <FontAwesomeIcon className="mdi" icon={faCloudUpload} />&nbsp;Upload
+                        <FontAwesomeIcon className="mdi" icon={faCloudUpload} /><span className="is-hidden-tablet">&nbsp;Upload</span>
                     </button>
                 </div>
             </div>
@@ -54,11 +54,11 @@ function MultipleFiles({ currentUser, fileClassification, listData, onDownloadDo
                                     </div>
                                     <div class="column has-text-right">
                                         <button onClick={(e)=>onDownloadDocumentClick(objectFile.id, objectFile.filename)} class="button is-small is-primary is-fullwidth-mobile" type="button">
-                                            <FontAwesomeIcon className="mdi" icon={faCloudDownload} />&nbsp;Download
+                                            <FontAwesomeIcon className="mdi" icon={faCloudDownload} /><span className="is-hidden-tablet">&nbsp;Download</span>
                                         </button>
                                         &nbsp;
                                         <button onClick={(a,b)=>onDeleteDocumentClick(objectFile.id, fileClassification.label)} class="button is-small is-danger is-fullwidth-mobile" type="button">
-                                            <FontAwesomeIcon className="mdi" icon={faTrashCan} />&nbsp;Delete
+                                            <FontAwesomeIcon className="mdi" icon={faTrashCan} /><span className="is-hidden-tablet">&nbsp;Delete</span>
                                         </button>
                                     </div>
                                 </div>

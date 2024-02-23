@@ -163,6 +163,7 @@ function AccountDetail() {
         <>
             <div className="container">
                 <section className="section">
+
                     {/* Desktop Breadcrumbs */}
                     <nav className="breadcrumb has-background-light p-4 is-hidden-touch" aria-label="breadcrumbs">
                         <ul>
@@ -174,12 +175,12 @@ function AccountDetail() {
                     {/* Mobile Breadcrumbs */}
                     <nav className="breadcrumb has-background-light p-4 is-hidden-desktop" aria-label="breadcrumbs">
                         <ul>
-                            <li className=""><Link to={generateBreadcrumbItemLink(currentUser)} aria-current="page"><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Users</Link></li>
+                            <li className=""><Link to={generateBreadcrumbItemLink(currentUser)} aria-current="page"><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Dashboard</Link></li>
                         </ul>
                     </nav>
 
                     {/* Page Title */}
-                    <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faUserCircle} />&nbsp;User</h1>
+                    <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faUserCircle} />&nbsp;Profile</h1>
                     <h4 className="subtitle is-4"><FontAwesomeIcon className="fas" icon={faEye} />&nbsp;Detail</h4>
                     <hr />
 
@@ -193,7 +194,7 @@ function AccountDetail() {
                             </div>
                             <div className="column has-text-right">
                                 <Link to={`/account/edit`} className="button is-small is-warning is-fullwidth-mobile" type="button" disabled={currentUser.status === 2}>
-                                    <FontAwesomeIcon className="mdi" icon={faPencil} />&nbsp;Edit
+                                    <FontAwesomeIcon className="mdi" icon={faPencil} />
                                 </Link>
                             </div>
                         </div>}
@@ -539,10 +540,10 @@ function AccountDetail() {
 
                                     <div className="columns pt-5">
                                         <div className="column is-half">
-                                            <Link className="button is-fullwidth-mobile" to={generateBreadcrumbItemLink(currentUser)}><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Dashboard</Link>
+                                            <Link className="button is-medium is-fullwidth-mobile" to={generateBreadcrumbItemLink(currentUser)}><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Dashboard</Link>
                                         </div>
                                         <div className="column is-half has-text-right">
-                                            <Link to={`/account/edit`} className="button is-warning is-fullwidth-mobile" disabled={currentUser.status === 2}><FontAwesomeIcon className="fas" icon={faPencil} />&nbsp;Edit</Link>
+                                            <Link to={`/account/edit`} className="button is-medium is-warning is-fullwidth-mobile" disabled={currentUser.status === 2}><FontAwesomeIcon className="fas" icon={faPencil} />&nbsp;Edit</Link>
                                         </div>
                                     </div>
 

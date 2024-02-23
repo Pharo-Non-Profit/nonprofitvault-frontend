@@ -324,7 +324,7 @@ function CustomerSmartFolderList() {
                                     <div className="columns">
                                     {listData.results.map(function(datum, i){
                                         return (
-                                            <div className="column is-4">
+                                            <div className="column is-6">
                                                 <div className="card">
                                                     <div className="card-image has-background-info">
                                                         <div className="has-text-centered" style={{padding:"60px"}}>
@@ -349,7 +349,7 @@ function CustomerSmartFolderList() {
                                                         </div>
                                                     </div>
                                                     <footer className="card-footer">
-                                                        <Link to={`/smart-folder/${datum.id}`} className="card-footer-item button is-primary is-large">
+                                                        <Link to={`/smart-folder/${datum.id}`} className="card-footer-item button is-primary is-medium">
                                                            View&nbsp;<FontAwesomeIcon className="fas" icon={faArrowCircleRight} />
                                                         </Link>
                                                     </footer>

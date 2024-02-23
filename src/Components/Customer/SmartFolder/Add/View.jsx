@@ -266,7 +266,7 @@ function CustomerSmartFolderAdd() {
 
                                     <div className="columns pt-5">
                                         <div className="column is-half">
-                                            <Link to={`/smart-folders`} className="button is-fullwidth-mobile">
+                                            <Link to={`/smart-folders`} className="button is-medium is-fullwidth-mobile">
                                                 <FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Smart Folders
                                             </Link>
                                         </div>

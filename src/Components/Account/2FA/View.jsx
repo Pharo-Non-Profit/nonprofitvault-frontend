@@ -257,7 +257,7 @@ function AccountTwoFactorAuthenticationDetail() {
                     </nav>
 
                     {/* Page Title */}
-                    <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faUserCircle} />&nbsp;User</h1>
+                    <h1 className="title is-2"><FontAwesomeIcon className="fas" icon={faUserCircle} />&nbsp;Profile</h1>
                     <h4 className="subtitle is-4"><FontAwesomeIcon className="fas" icon={faEye} />&nbsp;Detail</h4>
                     <hr />
 
@@ -273,11 +273,11 @@ function AccountTwoFactorAuthenticationDetail() {
                                 {currentUser.otpEnabled && currentUser.otpVerified
                                     ?
                                     <button className="button is-small is-danger is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} onClick={(e)=>{setShowDisableOTPWarning(true)}}>
-                                        <FontAwesomeIcon className="mdi" icon={faUnlock} />&nbsp;Disable 2FA
+                                        <FontAwesomeIcon className="mdi" icon={faUnlock} />
                                     </button>
                                     :
                                     <Link className="button is-small is-success is-fullwidth-mobile" type="button" disabled={currentUser.status === 2} to="/account/2fa/enable">
-                                        <FontAwesomeIcon className="mdi" icon={faLock} />&nbsp;Enable 2FA
+                                        <FontAwesomeIcon className="mdi" icon={faLock} />
                                     </Link>
                                 }
                             </div>
@@ -336,14 +336,14 @@ function AccountTwoFactorAuthenticationDetail() {
 
                                     <div className="columns pt-5">
                                         <div className="column is-half">
-                                            <Link className="button is-fullwidth-mobile" to={generateBreadcrumbItemLink(currentUser)}><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Dashboard</Link>
+                                            <Link className="button is-medium is-fullwidth-mobile" to={generateBreadcrumbItemLink(currentUser)}><FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Dashboard</Link>
                                         </div>
                                         <div className="column is-half has-text-right">
                                             {currentUser.otpEnabled && currentUser.otpVerified
                                                 ?
-                                                <button className="button is-danger is-fullwidth-mobile" disabled={currentUser.status === 2} onClick={(e)=>{setShowDisableOTPWarning(true)}}><FontAwesomeIcon className="fas" icon={faUnlock} />&nbsp;Disable 2FA</button>
+                                                <button className="button is-medium is-danger is-fullwidth-mobile" disabled={currentUser.status === 2} onClick={(e)=>{setShowDisableOTPWarning(true)}}><FontAwesomeIcon className="fas" icon={faUnlock} />&nbsp;Disable 2FA</button>
                                                 :
-                                                <Link className="button is-success is-fullwidth-mobile" disabled={currentUser.status === 2} to="/account/2fa/enable"><FontAwesomeIcon className="fas" icon={faLock} />&nbsp;Enable 2FA</Link>
+                                                <Link className="button is-medium is-success is-fullwidth-mobile" disabled={currentUser.status === 2} to="/account/2fa/enable"><FontAwesomeIcon className="fas" icon={faLock} />&nbsp;Enable 2FA</Link>
                                             }
                                         </div>
                                     </div>

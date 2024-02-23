@@ -262,7 +262,7 @@ function CustomerSmartFolderDelete() {
 
                                     <div className="columns pt-5">
                                         <div className="column is-half">
-                                            <Link to={`/smart-folder/${sfid}`} className="button is-fullwidth-mobile">
+                                            <Link to={`/smart-folder/${sfid}`} className="button is-medium is-fullwidth-mobile">
                                                 <FontAwesomeIcon className="fas" icon={faArrowLeft} />&nbsp;Back to Detail
                                             </Link>
                                         </div>
