@@ -222,113 +222,28 @@ export default props => {
                                 <Link to="/smart-folders" className={`has-text-grey-light ${location.pathname.includes("smart-folders") && !location.pathname.includes("add") && "is-active"}`}>
                                     <FontAwesomeIcon className="fas" icon={faTable} />&nbsp;List
                                 </Link>
-                            <li>
-                                <ul className="menu-list">
-                                    {smartFolderListData && smartFolderListData.results && smartFolderListData.results.length > 0 && <>
-                                        {smartFolderListData.results.map(function(datum, i){
-                                            return (
-                                                <li>
-                                                    <Link to={`/smart-folder/${datum.id}`} className={`has-text-grey-light ${location.pathname.includes(datum.id) && "is-active"}`}>
-                                                        <FontAwesomeIcon className="fas" icon={faMoneyBills} />&nbsp;{datum.name}
-                                                    </Link>
-                                                </li>
-                                            );
-                                        })}
-                                    </>}
-
-                                    {/*
-                                    <li>
-                                        <Link to={`/documents/goverment/${currentUser.country}`} className={`has-text-grey-light ${location.pathname.includes("goverment") && "is-active"}`}>
-                                            <FontAwesomeIcon className="fas" icon={faUniversity} />&nbsp;Government
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/documents/financial" className={`has-text-grey-light ${location.pathname.includes("financial") && "is-active"}`}>
-                                            <FontAwesomeIcon className="fas" icon={faMoneyBills} />&nbsp;Financial
-                                        </Link>
-                                    </li>
-                                    */}
-                                    <li>
-                                        <Link to="/smart-folders/add" className={`has-text-grey-light ${location.pathname.includes("smart-folders/add") && "is-active"}`}>
-                                            <FontAwesomeIcon className="fas" icon={faPlus} />&nbsp;Add
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </li>
-                            </li>
-
-                        {/*
-                            <li>
-                                <ul className="menu-list">
-                                    <li>
-                                        <Link to={`/documents/goverment/${currentUser.country}`} className={`has-text-grey-light ${location.pathname.includes("goverment") && "is-active"}`}>
-                                            <FontAwesomeIcon className="fas" icon={faUniversity} />&nbsp;Government
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/documents/financial" className={`has-text-grey-light ${location.pathname.includes("financial") && "is-active"}`}>
-                                            <FontAwesomeIcon className="fas" icon={faMoneyBills} />&nbsp;Financial
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/documents/more" className={`has-text-grey-light ${location.pathname.includes("upload") && "is-active"}`}>
-                                            <FontAwesomeIcon className="fas" icon={faEllipsis} />&nbsp;More
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </li>
-*/}
-                        </ul>
-
-{/*
-------------------------------------------------------------------------------------------
-                <ul className="menu-list">
-                    <li>
-                        <Link to="/dashboard" className={`has-text-grey-light ${location.pathname.includes("dashboard") && "is-active"}`}>
-                            <FontAwesomeIcon className="fas" icon={faTachometer} />&nbsp;Dashboard
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/documents" className={`has-text-grey-light ${location.pathname.includes("documents") && !location.pathname.includes("goverment") && !location.pathname.includes("financial") && "is-active"}`}>
-                            <FontAwesomeIcon className="fas" icon={faCloud} />&nbsp;Documents
-                        </Link>
-                    </li>
-                    <li>
-                        <ul className="menu-list">
-                            <li>
-                                <Link to="/documents/goverment" className={`has-text-grey-light ${location.pathname.includes("goverment") && "is-active"}`}>
-                                    <FontAwesomeIcon className="fas" icon={faUniversity} />&nbsp;Government
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/documents/financial" className={`has-text-grey-light ${location.pathname.includes("financial") && "is-active"}`}>
-                                    <FontAwesomeIcon className="fas" icon={faMoneyBills} />&nbsp;Financial
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/documents/more" className={`has-text-grey-light ${location.pathname.includes("upload") && "is-active"}`}>
-                                    <FontAwesomeIcon className="fas" icon={faEllipsis} />&nbsp;More
-                                </Link>
+                                <li>
+                                    <ul className="menu-list">
+                                        {smartFolderListData && smartFolderListData.results && smartFolderListData.results.length > 0 && <>
+                                            {smartFolderListData.results.map(function(datum, i){
+                                                return (
+                                                    <li>
+                                                        <Link to={`/smart-folder/${datum.id}`} className={`has-text-grey-light ${location.pathname.includes(datum.id) && "is-active"}`}>
+                                                            <FontAwesomeIcon className="fas" icon={faMoneyBills} />&nbsp;{datum.name}
+                                                        </Link>
+                                                    </li>
+                                                );
+                                            })}
+                                        </>}
+                                        <li>
+                                            <Link to="/smart-folders/add" className={`has-text-grey-light ${location.pathname.includes("smart-folders/add") && "is-active"}`}>
+                                                <FontAwesomeIcon className="fas" icon={faPlus} />&nbsp;New
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </li>
                             </li>
                         </ul>
-                    </li>
-
-                </ul>
-------------------------------------------------------------------------------------------
-*/}
-
-{/*
-                        <p className="menu-label has-text-grey-light">
-                            Settings
-                        </p>
-                        <ul className="menu-list">
-                            <li>
-                                <Link to="/upload-directories" className={`has-text-grey-light ${location.pathname.includes("upload") && "is-active"}`}>
-                                    <FontAwesomeIcon className="fas" icon={faFile} />&nbsp;My Uploads
-                                </Link>
-                            </li>
-                        </ul>
-*/}
 
                         <p className="menu-label has-text-grey-light">
                             Account

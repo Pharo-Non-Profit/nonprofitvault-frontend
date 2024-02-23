@@ -86,6 +86,8 @@ function CustomerSmartFolderAdd() {
         console.log("onCustomerUserSmartFolderAddSuccess: Starting...");
         console.log(response);
 
+        const createdSmartFolderID = response.id;
+
         // Add a temporary banner message in the app and then clear itself after 2 seconds.
         setTopAlertMessage("Smart folder created");
         setTopAlertStatus("success");
@@ -95,8 +97,50 @@ function CustomerSmartFolderAdd() {
             setTopAlertMessage("");
         }, 2000);
 
-        // Redirect the user to the user attachments page.
-        setForceURL("/smart-folder/"+response.id);
+        // The following code will make an API call to fetch all the smart
+        // folders so the side menu gets refreshed.
+
+        let params = new Map();
+        params.set("page_size", 1000);         // Pagination
+        params.set("sort_field", "created_at") // Sorting
+        getSmartFolderListAPI(
+            params,
+            (response)=>{
+                console.log("getSmartFolderListAPI: success: Starting...");
+
+                // Update the apps list.
+                setListData(response);
+
+                // Redirect the user to the user attachments page.
+                setForceURL("/smart-folder/"+createdSmartFolderID);
+            },
+            (apiErr)=>{
+                console.log("getSmartFolderListAPI: error: Starting...");
+                setErrors(apiErr);
+
+                // Add a temporary banner message in the app and then clear itself after 2 seconds.
+                setTopAlertMessage("Failed submitting");
+                setTopAlertStatus("danger");
+                setTimeout(() => {
+                    console.log("getSmartFolderListAPI: success: Delayed for 2 seconds.");
+                    console.log("getSmartFolderListAPI: success: topAlertMessage, topAlertStatus:", topAlertMessage, topAlertStatus);
+                    setTopAlertMessage("");
+                }, 2000);
+
+                // The following code will cause the screen to scroll to the top of
+                // the page. Please see ``react-scroll`` for more information:
+                // https://github.com/fisshy/react-scroll
+                var scroll = Scroll.animateScroll;
+                scroll.scrollToTop();
+            },
+            ()=>{
+                console.log("getSmartFolderListAPI: done: Starting...");
+                setFetching(false);
+            },
+            ()=>{
+                console.log("getSmartFolderListAPI: unauthorized detected");
+            },
+        );
     }
 
     function onCustomerUserSmartFolderAddError(apiErr) {
