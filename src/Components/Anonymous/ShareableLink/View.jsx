@@ -119,8 +119,8 @@ function AnonymousShareableLink() {
                                                 </div>
                                             </nav>
                                             {/* End Logo */}
-                                            <form>
-                                                <h1 className="title is-4 has-text-centered">Shareable Link Content</h1>
+                                            <form><FormErrorBox errors={errors} />
+                                                <h1 className="title is-4 has-text-centered">Download Folder Content</h1>
 
 
                                                 {/*
@@ -137,20 +137,20 @@ function AnonymousShareableLink() {
 
                                             </form>
                                             <br />
-                                            <nav className="level">
+                                            {/*<nav className="level">
                                                 <div className="level-item has-text-centered">
                                                     <div>
                                                         <a href="https://github.com/Pharo-Non-Profit" className="is-size-7-tablet"><FontAwesomeIcon icon={faArrowLeft} /> Back Home</a>
                                                     </div>
                                                 </div>
                                                 <div className="level-item has-text-centered">
-                                                    {/*
+
                                                     <div>
                                                         <Link to="/cpsrn-registry" className="is-size-7-tablet">NONPROFITVAULTRN Registry <FontAwesomeIcon icon={faArrowRight} /></Link>
                                                     </div>
-                                                    */}
+
                                                 </div>
-                                            </nav>
+                                            </nav>*/}
                                         </div>
                                         {/* End box */}
 
