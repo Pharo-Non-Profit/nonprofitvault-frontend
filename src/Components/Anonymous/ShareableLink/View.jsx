@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link, Navigate, useSearchParams } from "react-router-dom";
 import Scroll from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTasks, faTachometer, faEye, faPencil, faTrashCan, faPlus, faGauge, faArrowRight, faBarcode, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faCloudDownload, faTasks, faTachometer, faEye, faPencil, faTrashCan, faPlus, faGauge, faArrowRight, faBarcode, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import FormErrorBox from "../../Reusable/FormErrorBox";
 import { getPublicShareableLinkDetailAPI } from "../../../API/ShareableLink";
+import { getObjectFilePresignedURLAPI } from "../../../API/ObjectFile";
+import { FILE_CLASSIFICATION_CANADA_MAP } from "../../../Constants/FileClassificationForCanada";
 
 
 function AnonymousShareableLink() {
@@ -70,6 +72,53 @@ function AnonymousShareableLink() {
 
     }
 
+    const onDownloadDocumentClick = (objectFileID, objectFileFilename) => {
+        console.log(objectFileID, objectFileFilename);
+
+        setErrors({});
+        setFetching(true);
+
+        getObjectFilePresignedURLAPI(
+            objectFileID,
+            (responseData) => { // ON SUCCESS
+                console.log("getObjectFilePresignedURLAPI: Success: responseData:",responseData);
+
+                // Reset any previous errors.
+                setErrors({});
+
+                // Create an anchor element
+                const link = document.createElement('a');
+
+                // Set the href attribute to the presigned URL
+                link.href = responseData.presignedUrl;
+
+                // Set the download attribute to specify the filename
+                link.download = objectFileFilename; // Replace 'filename.ext' with the desired filename
+
+                // Hide the anchor element
+                link.style.display = 'none';
+
+                // Append the anchor element to the document body
+                document.body.appendChild(link);
+
+                // Trigger a click event on the anchor element
+                link.click();
+
+                // Remove the anchor element from the document body
+                document.body.removeChild(link);
+            },
+            (apiErr) => { // ON ERROR
+                // Handle API errors
+                setErrors(apiErr);
+            },
+            () => { // ON DONE
+                // Turn off page refresh.
+                setFetching(false);
+            },
+            onUnauthorized
+        );
+    }
+
     ////
     //// Misc.
     ////
@@ -119,8 +168,34 @@ function AnonymousShareableLink() {
                                                 </div>
                                             </nav>
                                             {/* End Logo */}
-                                            <form><FormErrorBox errors={errors} />
-                                                <h1 className="title is-4 has-text-centered">Download Folder Content</h1>
+                                            <form>
+                                                <FormErrorBox errors={errors} />
+                                                <h1 className="title is-1 has-text-centered">Shared Folder</h1>
+                                                <h1 className="title is-3 has-text-centered">{datum.smartFolderName} By {datum.tenantName}</h1>
+                                                {datum && <>
+                                                    <div class="content">
+                                                        {datum.objectFiles.map(function(objectFile, i){
+                                                            return (
+                                                                <>
+                                                                    <article class="message">
+                                                                        <div class="message-body">
+                                                                            <div class="columns">
+                                                                                <div class="column">
+                                                                                    <i>{objectFile.filename}</i>
+                                                                                </div>
+                                                                                <div class="column is-3 has-text-right">
+                                                                                    <button onClick={(e)=>onDownloadDocumentClick(objectFile.id, objectFile.filename)} class="button is-small is-primary is-fullwidth-mobile" type="button">
+                                                                                        <FontAwesomeIcon className="mdi" icon={faCloudDownload} /><span className="is-hidden-tablet">&nbsp;Download</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </article>
+                                                                </>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                </>}
 
 
                                                 {/*
@@ -155,7 +230,7 @@ function AnonymousShareableLink() {
                                         {/* End box */}
 
                                         <div className="has-text-centered">
-                                            <p>© 2024 Capsule.</p>
+                                            <p>© 2024 Non-Profit Vault</p>
                                         </div>
                                         {/* End suppoert text. */}
 

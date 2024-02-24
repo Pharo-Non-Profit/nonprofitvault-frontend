@@ -167,7 +167,7 @@ function TwoFactorAuthenticationWizardStep1() {
                                         {/* End box */}
 
                                         <div className="has-text-centered">
-                                            <p>© 2024 Capsule.</p>
+                                            <p>© 2024 Non-Profit Vault</p>
                                         </div>
                                         {/* End suppoert text. */}
 
