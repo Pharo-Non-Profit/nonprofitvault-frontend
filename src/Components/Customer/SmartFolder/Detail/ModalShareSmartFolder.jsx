@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink, faShare, faCloud, faTasks, faTachometer, faPlus, faTimesCircle, faCheckCircle, faFile, faGauge, faPencil, faUsers, faIdCard, faAddressBook, faContactCard, faChartPie, faCogs, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useRecoilState } from 'recoil';
 
-import { postSmartFolderOperationSharableLinkAPI } from "../../../../API/SmartFolder";
+import { postSharableLinkCreateAPI } from "../../../../API/SharableLink";
 import FormErrorBox from "../../../Reusable/FormErrorBox";
 import PageLoadingContent from "../../../Reusable/PageLoadingContent";
 import FormCheckboxField from "../../../Reusable/FormCheckboxField";
@@ -25,6 +25,12 @@ const EXPIRES_IN_OPTIONS = [
 ];
 
 function ShareSmartFolderModal({ showShareModalForSmartFolderID, setShowShareModalForSmartFolderID, smartFolderName, onSuccessCompletionCallback, onErrorCompletionCallback }) {
+    // For debugging purposes only.
+    console.log("REACT_APP_WWW_PROTOCOL:", process.env.REACT_APP_WWW_PROTOCOL);
+    console.log("REACT_APP_WWW_DOMAIN:", process.env.REACT_APP_WWW_DOMAIN);
+    console.log("REACT_APP_API_PROTOCOL:", process.env.REACT_APP_API_PROTOCOL);
+    console.log("REACT_APP_API_DOMAIN:", process.env.REACT_APP_API_DOMAIN);
+
     ////
     //// Global state.
     ////
@@ -58,18 +64,18 @@ function ShareSmartFolderModal({ showShareModalForSmartFolderID, setShowShareMod
         }
     }
 
-    const onGenerateLinkButtonClick = () => {
-        console.log("onGenerateLinkButtonClick: starting...");
-        postSmartFolderOperationSharableLinkAPI(
+    const onGenerateSharableLinkButtonClick = () => {
+        console.log("onGenerateSharableLinkButtonClick: starting...");
+        postSharableLinkCreateAPI(
             {
                 smart_folder_id: showShareModalForSmartFolderID,
-                expires_in: expiresIn,
+                expires_in: parseInt(expiresIn),
             },
             onGenerateSharableLinkSuccess,
             onGenerateSharableLinkError,
             onGenerateSharableLinkDone,
         );
-        console.log("onGenerateLinkButtonClick: finished.");
+        console.log("onGenerateSharableLinkButtonClick: finished.");
     }
 
     const onCloseModal = () => {
@@ -99,7 +105,10 @@ function ShareSmartFolderModal({ showShareModalForSmartFolderID, setShowShareMod
         }, 2000);
 
         setErrors({});
-        setSharableURL(response.url)
+
+        const url = process.env.REACT_APP_WWW_PROTOCOL + "://" + process.env.REACT_APP_WWW_DOMAIN + "/share?q=" + response.id;
+        setSharableURL(url);
+
         console.log("onGenerateSharableLinkSuccess: Finished.");
     }
 
@@ -180,7 +189,9 @@ function ShareSmartFolderModal({ showShareModalForSmartFolderID, setShowShareMod
                                 Sharable link created successfully! Click the <strong>Copy link</strong> button to save the link to your clipboard.
                                 <br />
                                 <br />
-                                <strong>Link:</strong>&nbsp;{sharableURL}
+                                <strong>Link:</strong>
+                                <br />
+                                {sharableURL}
                             </div>
                         }
                     </section>
@@ -188,7 +199,7 @@ function ShareSmartFolderModal({ showShareModalForSmartFolderID, setShowShareMod
                         <button className="button" onClick={onCloseModal}>Done</button>
                         {sharableURL
                             ? <button className="button is-success" onClick={onCopyLinkButtonClick} ><FontAwesomeIcon className="mdi" icon={faLink} />&nbsp;Copy link</button>
-                            : <button className="button is-primary" onClick={onGenerateLinkButtonClick} ><FontAwesomeIcon className="mdi" icon={faCheckCircle} />&nbsp;Generate sharable link</button>
+                            : <button className="button is-primary" onClick={onGenerateSharableLinkButtonClick} ><FontAwesomeIcon className="mdi" icon={faCheckCircle} />&nbsp;Generate sharable link</button>
                         }
                     </footer>
                 </div>

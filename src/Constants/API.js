@@ -63,10 +63,10 @@ export const NONPROFITVAULT_HOW_HEAR_ABOUT_US_ITEM_SELECT_OPTIONS_PUBLIC_API_END
 /**
  * Smart Folders
  */
- export const NONPROFITVAULT_SMART_FOLDERS_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/smart-folders';
- export const NONPROFITVAULT_SMART_FOLDER_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/smart-folder/{id}';
- export const NONPROFITVAULT_SMART_FOLDER_SELECT_OPTIONS_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/smart-folders/select-options";
- export const NONPROFITVAULT_SMART_FOLDER_OPERATION_GENERATE_SHARABLE_LINK_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/smart-folders/operations/generate-sharable-link';
+export const NONPROFITVAULT_SMART_FOLDERS_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/smart-folders';
+export const NONPROFITVAULT_SMART_FOLDER_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/smart-folder/{id}';
+export const NONPROFITVAULT_SMART_FOLDER_SELECT_OPTIONS_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/smart-folders/select-options";
+export const NONPROFITVAULT_SMART_FOLDER_OPERATION_GENERATE_SHARABLE_LINK_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/smart-folders/operations/generate-sharable-link';
 
 /**
  * ObjectFiles
@@ -75,6 +75,17 @@ export const NONPROFITVAULT_OBJECT_FILES_API_ENDPOINT = HTTP_API_SERVER + "/api/
 export const NONPROFITVAULT_OBJECT_FILE_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/object-file/{id}";
 export const NONPROFITVAULT_OBJECT_FILE_PRESIGNED_URL_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/object-file/{id}/presigned-url";
 export const NONPROFITVAULT_OBJECT_FILE_CONTENT_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/object-file/{id}/content";
+
+
+/**
+ * Sharable Link
+ */
+export const NONPROFITVAULT_SHARABLE_LINKS_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/sharable-links';
+export const NONPROFITVAULT_SHARABLE_LINK_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/sharable-link/{id}';
+export const NONPROFITVAULT_SHARABLE_LINK_SELECT_OPTIONS_API_ENDPOINT = HTTP_API_SERVER + "/api/v1/sharable-links/select-options";
+export const NONPROFITVAULT_SHARABLE_LINK_OPERATION_GENERATE_SHARABLE_LINK_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/sharable-links/operations/generate-sharable-link';
+export const NONPROFITVAULT_PUBLIC_SHARABLE_LINK_API_ENDPOINT = HTTP_API_SERVER + '/api/v1/public/sharable-link/{id}';
+
 
 /**
  * Staff
