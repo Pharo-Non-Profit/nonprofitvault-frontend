@@ -3,19 +3,19 @@ import { camelizeKeys, decamelizeKeys, decamelize } from 'humps';
 import { DateTime } from "luxon";
 
 import {
-    NONPROFITVAULT_SHARABLE_LINKS_API_ENDPOINT,
-    NONPROFITVAULT_SHARABLE_LINK_API_ENDPOINT,
-    NONPROFITVAULT_SHARABLE_LINK_SELECT_OPTIONS_API_ENDPOINT,
-    NONPROFITVAULT_SHARABLE_LINK_OPERATION_GENERATE_SHARABLE_LINK_API_ENDPOINT,
+    NONPROFITVAULT_SHAREABLE_LINKS_API_ENDPOINT,
+    NONPROFITVAULT_SHAREABLE_LINK_API_ENDPOINT,
+    NONPROFITVAULT_SHAREABLE_LINK_SELECT_OPTIONS_API_ENDPOINT,
+    NONPROFITVAULT_SHAREABLE_LINK_OPERATION_GENERATE_SHARABLE_LINK_API_ENDPOINT,
     NONPROFITVAULT_PUBLIC_SHARABLE_LINK_API_ENDPOINT
 } from "../Constants/API";
 
 
-export function getSharableLinkSelectOptionListAPI(onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+export function getShareableLinkSelectOptionListAPI(onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
     const axios = getCustomAxios(onUnauthorizedCallback);
 
     // The following code will generate the url argument for the url based on the map.
-    let aURL = NONPROFITVAULT_SHARABLE_LINK_SELECT_OPTIONS_API_ENDPOINT;
+    let aURL = NONPROFITVAULT_SHAREABLE_LINK_SELECT_OPTIONS_API_ENDPOINT;
 
     axios.get(aURL).then((successResponse) => {
         const responseData = successResponse.data;
@@ -31,11 +31,11 @@ export function getSharableLinkSelectOptionListAPI(onSuccessCallback, onErrorCal
     }).then(onDoneCallback);
 }
 
-export function getSharableLinkListAPI(filtersMap=new Map(), onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+export function getShareableLinkListAPI(filtersMap=new Map(), onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
     const axios = getCustomAxios(onUnauthorizedCallback);
 
     // The following code will generate the query parameters for the url based on the map.
-    let aURL = NONPROFITVAULT_SHARABLE_LINKS_API_ENDPOINT;
+    let aURL = NONPROFITVAULT_SHAREABLE_LINKS_API_ENDPOINT;
     filtersMap.forEach(
         (value, key) => {
             let decamelizedkey = decamelize(key)
@@ -54,7 +54,7 @@ export function getSharableLinkListAPI(filtersMap=new Map(), onSuccessCallback, 
         const data = camelizeKeys(responseData);
 
         // Bugfixes.
-        // console.log("getSharableLinkListAPI | pre-fix | results:", data);
+        // console.log("getShareableLinkListAPI | pre-fix | results:", data);
         if (data.results !== undefined && data.results !== null && data.results.length > 0) {
             data.results.forEach(
                 (item, index) => {
@@ -63,7 +63,7 @@ export function getSharableLinkListAPI(filtersMap=new Map(), onSuccessCallback, 
                 }
             )
         }
-        // console.log("getSharableLinkListAPI | post-fix | results:", data);
+        // console.log("getShareableLinkListAPI | post-fix | results:", data);
 
         // Return the callback data.
         onSuccessCallback(data);
@@ -73,11 +73,11 @@ export function getSharableLinkListAPI(filtersMap=new Map(), onSuccessCallback, 
     }).then(onDoneCallback);
 }
 
-// export function getSharableLinkSelectOptionListAPI(filtersMap=new Map(), onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+// export function getShareableLinkSelectOptionListAPI(filtersMap=new Map(), onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
 //     const axios = getCustomAxios(onUnauthorizedCallback);
 //
 //     // The following code will generate the query parameters for the url based on the map.
-//     let aURL = NONPROFITVAULT_SHARABLE_LINKS_SELECT_OPTIONS_API_ENDPOINT;
+//     let aURL = NONPROFITVAULT_SHAREABLE_LINKS_SELECT_OPTIONS_API_ENDPOINT;
 //     filtersMap.forEach(
 //         (value, key) => {
 //             let decamelizedkey = decamelize(key)
@@ -96,7 +96,7 @@ export function getSharableLinkListAPI(filtersMap=new Map(), onSuccessCallback, 
 //         const data = camelizeKeys(responseData);
 //
 //         // Bugfixes.
-//         console.log("getSharableLinkSelectOptionListAPI | pre-fix | results:", data);
+//         console.log("getShareableLinkSelectOptionListAPI | pre-fix | results:", data);
 //         if (data.results !== undefined && data.results !== null && data.results.length > 0) {
 //             data.results.forEach(
 //                 (item, index) => {
@@ -105,7 +105,7 @@ export function getSharableLinkListAPI(filtersMap=new Map(), onSuccessCallback, 
 //                 }
 //             )
 //         }
-//         console.log("getSharableLinkSelectOptionListAPI | post-fix | results:", data);
+//         console.log("getShareableLinkSelectOptionListAPI | post-fix | results:", data);
 //
 //         // Return the callback data.
 //         onSuccessCallback(data);
@@ -116,13 +116,13 @@ export function getSharableLinkListAPI(filtersMap=new Map(), onSuccessCallback, 
 // }
 //
 
-export function postSharableLinkCreateAPI(data, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+export function postShareableLinkCreateAPI(data, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
     const axios = getCustomAxios(onUnauthorizedCallback);
 
     // To Snake-case for API from camel-case in React.
     let decamelizedData = decamelizeKeys(data);
 
-    axios.post(NONPROFITVAULT_SHARABLE_LINKS_API_ENDPOINT, decamelizedData).then((successResponse) => {
+    axios.post(NONPROFITVAULT_SHAREABLE_LINKS_API_ENDPOINT, decamelizedData).then((successResponse) => {
         const responseData = successResponse.data;
 
         // Snake-case from API to camel-case for React.
@@ -136,9 +136,9 @@ export function postSharableLinkCreateAPI(data, onSuccessCallback, onErrorCallba
     }).then(onDoneCallback);
 }
 
-export function getSharableLinkDetailAPI(organizationID, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+export function getShareableLinkDetailAPI(organizationID, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
     const axios = getCustomAxios(onUnauthorizedCallback);
-    axios.get(NONPROFITVAULT_SHARABLE_LINK_API_ENDPOINT.replace("{id}", organizationID)).then((successResponse) => {
+    axios.get(NONPROFITVAULT_SHAREABLE_LINK_API_ENDPOINT.replace("{id}", organizationID)).then((successResponse) => {
         const responseData = successResponse.data;
 
         // Snake-case from API to camel-case for React.
@@ -155,9 +155,9 @@ export function getSharableLinkDetailAPI(organizationID, onSuccessCallback, onEr
     }).then(onDoneCallback);
 }
 
-export function putSharableLinkUpdateAPI(decamelizedData, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+export function putShareableLinkUpdateAPI(decamelizedData, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
     const axios = getCustomAxios(onUnauthorizedCallback);
-    axios.put(NONPROFITVAULT_SHARABLE_LINK_API_ENDPOINT.replace("{id}", decamelizedData.id), decamelizedData).then((successResponse) => {
+    axios.put(NONPROFITVAULT_SHAREABLE_LINK_API_ENDPOINT.replace("{id}", decamelizedData.id), decamelizedData).then((successResponse) => {
         const responseData = successResponse.data;
 
         // Snake-case from API to camel-case for React.
@@ -171,9 +171,9 @@ export function putSharableLinkUpdateAPI(decamelizedData, onSuccessCallback, onE
     }).then(onDoneCallback);
 }
 
-export function deleteSharableLinkAPI(id, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+export function deleteShareableLinkAPI(id, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
     const axios = getCustomAxios(onUnauthorizedCallback);
-    axios.delete(NONPROFITVAULT_SHARABLE_LINK_API_ENDPOINT.replace("{id}", id)).then((successResponse) => {
+    axios.delete(NONPROFITVAULT_SHAREABLE_LINK_API_ENDPOINT.replace("{id}", id)).then((successResponse) => {
         const responseData = successResponse.data;
 
         // Snake-case from API to camel-case for React.
@@ -187,13 +187,13 @@ export function deleteSharableLinkAPI(id, onSuccessCallback, onErrorCallback, on
     }).then(onDoneCallback);
 }
 
-// export function postSharableLinkCreateCommentOperationAPI(organizationID, content, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+// export function postShareableLinkCreateCommentOperationAPI(organizationID, content, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
 //     const axios = getCustomAxios(onUnauthorizedCallback);
 //     const data = {
 //         organization_id: organizationID,
 //         content: content,
 //     };
-//     axios.post(NONPROFITVAULT_SHARABLE_LINK_CREATE_COMMENT_OPERATION_API_ENDPOINT, data).then((successResponse) => {
+//     axios.post(NONPROFITVAULT_SHAREABLE_LINK_CREATE_COMMENT_OPERATION_API_ENDPOINT, data).then((successResponse) => {
 //         const responseData = successResponse.data;
 //
 //         // Snake-case from API to camel-case for React.
@@ -207,9 +207,9 @@ export function deleteSharableLinkAPI(id, onSuccessCallback, onErrorCallback, on
 //     }).then(onDoneCallback);
 // }
 
-export function postSharableLinkOperationSharableLinkAPI(decamelizedData, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+export function postShareableLinkOperationShareableLinkAPI(decamelizedData, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
     const axios = getCustomAxios(onUnauthorizedCallback);
-    axios.post(NONPROFITVAULT_SHARABLE_LINK_OPERATION_GENERATE_SHARABLE_LINK_API_ENDPOINT, decamelizedData).then((successResponse) => {
+    axios.post(NONPROFITVAULT_SHAREABLE_LINK_OPERATION_GENERATE_SHARABLE_LINK_API_ENDPOINT, decamelizedData).then((successResponse) => {
         const responseData = successResponse.data;
 
         // Snake-case from API to camel-case for React.
@@ -223,7 +223,7 @@ export function postSharableLinkOperationSharableLinkAPI(decamelizedData, onSucc
     }).then(onDoneCallback);
 }
 
-export function getPublicSharableLinkDetailAPI(sharableLinkID, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
+export function getPublicShareableLinkDetailAPI(sharableLinkID, onSuccessCallback, onErrorCallback, onDoneCallback, onUnauthorizedCallback) {
     const axios = getCustomAxios(onUnauthorizedCallback);
     axios.get(NONPROFITVAULT_PUBLIC_SHARABLE_LINK_API_ENDPOINT.replace("{id}", sharableLinkID)).then((successResponse) => {
         const responseData = successResponse.data;

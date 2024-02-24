@@ -50,7 +50,8 @@ function Topbar() {
         "/password-reset",
         "/root/dashboard",
         "/root/tenants",
-        "/root/tenant"
+        "/root/tenant",
+        "/share",
     ];
     const location = useLocation();
     var arrayLength = ignorePathsArr.length;

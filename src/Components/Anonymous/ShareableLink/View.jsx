@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTasks, faTachometer, faEye, faPencil, faTrashCan, faPlus, faGauge, faArrowRight, faBarcode, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import FormErrorBox from "../../Reusable/FormErrorBox";
-import { getPublicSharableLinkDetailAPI } from "../../../API/SharableLink";
+import { getPublicShareableLinkDetailAPI } from "../../../API/ShareableLink";
 
 
-function AnonymousSharableLink() {
+function AnonymousShareableLink() {
     // For debugging purposes only.
     console.log("REACT_APP_WWW_PROTOCOL:", process.env.REACT_APP_WWW_PROTOCOL);
     console.log("REACT_APP_WWW_DOMAIN:", process.env.REACT_APP_WWW_DOMAIN);
@@ -79,7 +79,7 @@ function AnonymousSharableLink() {
 
         if (mounted) {
             setFetching(true);
-            getPublicSharableLinkDetailAPI(
+            getPublicShareableLinkDetailAPI(
                 sharableLinkID,
                 onSuccess,
                 onError,
@@ -120,12 +120,14 @@ function AnonymousSharableLink() {
                                             </nav>
                                             {/* End Logo */}
                                             <form>
-                                                <h1 className="title is-4 has-text-centered">Welcome</h1>
+                                                <h1 className="title is-4 has-text-centered">Shareable Link Content</h1>
 
 
+                                                {/*
                                                 <Link className="button is-medium is-block is-fullwidth is-primary" type="button" to="/login">
                                                     Login <FontAwesomeIcon icon={faArrowRight} />
                                                 </Link>
+                                                */}
                                                 {/*
                                                 <br />
                                                 <Link className="button is-medium is-block is-fullwidth is-info" type="button" to="/register" disabled={true}>
@@ -172,4 +174,4 @@ function AnonymousSharableLink() {
       );
 }
 
-export default AnonymousSharableLink;
+export default AnonymousShareableLink;

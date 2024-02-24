@@ -24,7 +24,7 @@ import NotFoundError from "./Components/Misc/NotFoundError";
 import NotImplementedError from "./Components/Misc/NotImplementedError";
 import ForgotPassword from "./Components/Gateway/ForgotPassword";
 import PasswordReset from "./Components/Gateway/PasswordReset";
-import AnonymousSharableLink from "./Components/Anonymous/SharableLink/View";
+import AnonymousShareableLink from "./Components/Anonymous/ShareableLink/View";
 
 // Account
 import AccountDetail from "./Components/Account/Detail/View";
@@ -162,7 +162,7 @@ function AppRoute() {
                                     <Route exact path="/logout" element={<LogoutRedirector/>}/>
                                     <Route exact path="/forgot-password" element={<ForgotPassword/>}/>
                                     <Route exact path="/password-reset" element={<PasswordReset/>}/>
-                                    <Route exact path="/share" element={<AnonymousSharableLink/>}/>
+                                    <Route exact path="/share" element={<AnonymousShareableLink/>}/>
                                     <Route exact path="/501" element={<NotImplementedError/>}/>
                                     <Route exact path="/" element={<Index/>}/>
                                     <Route path="*" element={<NotFoundError/>}/>

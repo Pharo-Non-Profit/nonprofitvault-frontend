@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink, faShare, faCloud, faTasks, faTachometer, faPlus, faTimesCircle, faCheckCircle, faFile, faGauge, faPencil, faUsers, faIdCard, faAddressBook, faContactCard, faChartPie, faCogs, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useRecoilState } from 'recoil';
 
-import { postSharableLinkCreateAPI } from "../../../../API/SharableLink";
+import { postShareableLinkCreateAPI } from "../../../../API/ShareableLink";
 import FormErrorBox from "../../../Reusable/FormErrorBox";
 import PageLoadingContent from "../../../Reusable/PageLoadingContent";
 import FormCheckboxField from "../../../Reusable/FormCheckboxField";
@@ -64,18 +64,18 @@ function ShareSmartFolderModal({ showShareModalForSmartFolderID, setShowShareMod
         }
     }
 
-    const onGenerateSharableLinkButtonClick = () => {
-        console.log("onGenerateSharableLinkButtonClick: starting...");
-        postSharableLinkCreateAPI(
+    const onGenerateShareableLinkButtonClick = () => {
+        console.log("onGenerateShareableLinkButtonClick: starting...");
+        postShareableLinkCreateAPI(
             {
                 smart_folder_id: showShareModalForSmartFolderID,
                 expires_in: parseInt(expiresIn),
             },
-            onGenerateSharableLinkSuccess,
-            onGenerateSharableLinkError,
-            onGenerateSharableLinkDone,
+            onGenerateShareableLinkSuccess,
+            onGenerateShareableLinkError,
+            onGenerateShareableLinkDone,
         );
-        console.log("onGenerateSharableLinkButtonClick: finished.");
+        console.log("onGenerateShareableLinkButtonClick: finished.");
     }
 
     const onCloseModal = () => {
@@ -90,17 +90,17 @@ function ShareSmartFolderModal({ showShareModalForSmartFolderID, setShowShareMod
     //// API.
     ////
 
-    const onGenerateSharableLinkSuccess = (response) => {
+    const onGenerateShareableLinkSuccess = (response) => {
         // For debugging purposes only.
-        console.log("onGenerateSharableLinkSuccess: Starting...");
-        console.log("onGenerateSharableLinkSuccess: response:", response);
+        console.log("onGenerateShareableLinkSuccess: Starting...");
+        console.log("onGenerateShareableLinkSuccess: response:", response);
 
         // Add a temporary banner message in the app and then clear itself after 2 seconds.
         setTopAlertMessage("Sharable link created");
         setTopAlertStatus("success");
         setTimeout(() => {
-            console.log("onGenerateSharableLinkSuccess: Delayed for 2 seconds.");
-            console.log("onGenerateSharableLinkSuccess: topAlertMessage, topAlertStatus:", topAlertMessage, topAlertStatus);
+            console.log("onGenerateShareableLinkSuccess: Delayed for 2 seconds.");
+            console.log("onGenerateShareableLinkSuccess: topAlertMessage, topAlertStatus:", topAlertMessage, topAlertStatus);
             setTopAlertMessage("");
         }, 2000);
 
@@ -109,19 +109,19 @@ function ShareSmartFolderModal({ showShareModalForSmartFolderID, setShowShareMod
         const url = process.env.REACT_APP_WWW_PROTOCOL + "://" + process.env.REACT_APP_WWW_DOMAIN + "/share?q=" + response.id;
         setSharableURL(url);
 
-        console.log("onGenerateSharableLinkSuccess: Finished.");
+        console.log("onGenerateShareableLinkSuccess: Finished.");
     }
 
-    const onGenerateSharableLinkError = (apiErr) => {
-        console.log("onGenerateSharableLinkError: Starting...");
+    const onGenerateShareableLinkError = (apiErr) => {
+        console.log("onGenerateShareableLinkError: Starting...");
         setErrors(apiErr);
 
         // Add a temporary banner message in the app and then clear itself after 2 seconds.
         setTopAlertMessage("Failed submitting");
         setTopAlertStatus("danger");
         setTimeout(() => {
-            console.log("onGenerateSharableLinkError: Delayed for 2 seconds.");
-            console.log("onGenerateSharableLinkError: topAlertMessage, topAlertStatus:", topAlertMessage, topAlertStatus);
+            console.log("onGenerateShareableLinkError: Delayed for 2 seconds.");
+            console.log("onGenerateShareableLinkError: topAlertMessage, topAlertStatus:", topAlertMessage, topAlertStatus);
             setTopAlertMessage("");
         }, 2000);
 
@@ -130,13 +130,13 @@ function ShareSmartFolderModal({ showShareModalForSmartFolderID, setShowShareMod
         // https://github.com/fisshy/react-scroll
         var scroll = Scroll.animateScroll;
         scroll.scrollToTop();
-        console.log("onGenerateSharableLinkError: Finished.");
+        console.log("onGenerateShareableLinkError: Finished.");
     }
 
-    const onGenerateSharableLinkDone = (response) => {
-        console.log("onGenerateSharableLinkDone: Starting...");
+    const onGenerateShareableLinkDone = (response) => {
+        console.log("onGenerateShareableLinkDone: Starting...");
         setFetching(false);
-        console.log("onGenerateSharableLinkDone: Finished.");
+        console.log("onGenerateShareableLinkDone: Finished.");
     }
 
     ////
@@ -199,7 +199,7 @@ function ShareSmartFolderModal({ showShareModalForSmartFolderID, setShowShareMod
                         <button className="button" onClick={onCloseModal}>Done</button>
                         {sharableURL
                             ? <button className="button is-success" onClick={onCopyLinkButtonClick} ><FontAwesomeIcon className="mdi" icon={faLink} />&nbsp;Copy link</button>
-                            : <button className="button is-primary" onClick={onGenerateSharableLinkButtonClick} ><FontAwesomeIcon className="mdi" icon={faCheckCircle} />&nbsp;Generate sharable link</button>
+                            : <button className="button is-primary" onClick={onGenerateShareableLinkButtonClick} ><FontAwesomeIcon className="mdi" icon={faCheckCircle} />&nbsp;Generate sharable link</button>
                         }
                     </footer>
                 </div>
